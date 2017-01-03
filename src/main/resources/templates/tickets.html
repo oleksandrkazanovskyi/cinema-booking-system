@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Купить билеты</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=2"/>
+    <script src="/public/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+    <script src="/public/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+    <script src="/public/js/validator.js" th:src="@{/js/validator.js}"></script>
+    <link rel="stylesheet" href="/public/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <style>
+        .navbar {
+            margin-bottom: 10px;
+            border-radius: 0;
+        }
+
+        .jumbotron {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<header th:replace="layout :: header"></header>
+
+<div th:replace="layout :: nav"></div>
+
+<div class="container text-center">
+    <div class="table-responsive" align="center">
+        <form class="form-vertical" data-toggle="validator" role="form" action="#"
+              th:action="@{/tickets}"
+              th:object="${order}" method="post">
+
+            <!-- <table class="table">
+                 <thead>
+                 <tr>
+                     <th>Кинотеатр</th>
+                     <th>Кинозал</th>
+                     <th>Фильм</th>
+                     <th>Дата</th>
+                     <th>Ряд</th>
+                     <th>Место</th>
+                     <th>Цена</th>
+                     <th>Выбрать</th>
+                 </tr>
+                 </thead>
+                 <tr th:each="ticket : ${allTicket}">
+                     <tbody>
+                     <td th:text="${ticket.filmSession.hall.cinema.cinemaTittle}"></td>
+                     <td th:text="${ticket.filmSession.hall.hallTittle}"></td>
+                     <td th:text="${ticket.filmSession.film.filmTittle}"></td>
+                     <td th:text="${ticket.filmSession.date}"></td>
+                     <td th:text="${ticket.rowNumber}"></td>
+                     <td th:text="${ticket.seat}"></td>
+                     <td th:text="${ticket.price}"></td>
+                     <td>
+                         <div class="form-group">
+                             <div class="checkbox">
+                                 <input type="checkbox"
+                                        th:field="*{tickets}" th:value="${ticket}"/></div>
+                         </div>
+                     </td>
+                     </tbody>
+                 </tr>
+
+
+             </table>-->
+            <div class="col-lg-12">
+                <div class="col-lg-1" th:each="ticket : ${allTicket}">
+                    <h5 th:text="'Ряд ' + ${ticket.rowNumber} +  ' Место' + ${ticket.seat}"></h5>
+                    <input type="checkbox" th:field="*{tickets}" th:value="${ticket}"/>
+                </div>
+            </div>
+            <!--   <div class="col-lg-12" th:each="row,iterStat : ${allTicket[1].filmSession.hall.rows}">
+                   <div class="col-lg-1" th:each="i: ${#numbers.sequence(1, row.seats, 1)}" th:if="${#numbers}">
+                       1
+                       <input type="checkbox"
+                              th:if = "${allTicket[i*iterStat.index]!=null}"
+                              th:field="*{tickets}"
+                              th:value="${allTicket[i*iterStat.index]}"/></div>
+               </div>-->
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Купить билеты</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

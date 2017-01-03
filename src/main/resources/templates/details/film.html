@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Фильмы</title>
+    <meta name="viewport" content="width=device-width, initial-scale=2"/>
+    <script src="/public/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+    <script src="/public/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+    <script src="/public/js/validator.js" th:src="@{/js/validator.js}"></script>
+    <link rel="stylesheet" href="/public/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="icon" href="/public/favicon.ico" th:href="@{/favicon.ico}"/>
+    <style>
+        .navbar {
+            margin-bottom: 10px;
+            border-radius: 0;
+        }
+
+        .jumbotron {
+            margin-bottom: 0;
+        }
+    </style>
+    <script>
+        function rowClicked(value) {
+            location.href = "/details/actor?actorId=" + value;
+        }
+    </script>
+</head>
+<body>
+
+<header th:replace="layout :: header"></header>
+
+<div th:replace="layout :: nav"></div>
+
+<div class="container">
+    <div class="bottom-right">
+        <div class="col-lg-5 text-center">
+            <img th:src="@{/img/{id}.jpg(id = ${film.filmId})}" style="width: 400px;"/>
+            <a th:href="@{/session(filmId = ${film.filmId})}">
+                <button type="button" class="btn btn-default" style="margin-top: 15px;">Сеансы</button>
+            </a>
+        </div>
+        <div class="col-lg-7">
+            <h4><strong>Название: </strong></h4>
+            <h4 th:text="${film.filmTittle}"></h4>
+            <br/>
+            <h4><strong>Описание: </strong></h4>
+            <h4 th:text="${film.description}"></h4>
+            <br/>
+            <h4><strong>Длительность:</strong></h4>
+            <h4 th:text="${film.filmDuration} + ' минут'"></h4>
+            <br/>
+            <h4><strong>Год выпуска:</strong></h4>
+            <h4 th:text="${film.year}"></h4>
+            <br/>
+            <h4><strong>Страна производства:</strong></h4>
+            <h4 th:text="${film.country}"></h4>
+            <br/>
+            <h4><strong>Возрастное ограничение:</strong></h4>
+            <h4 th:text="${film.restriction} + '+'"></h4>
+            <br/>
+            <h4><strong>Премьера:</strong></h4>
+            <h4 th:text="${film.startFrom}"></h4>
+            <br/>
+            <h4><strong>Жанры: </strong></h4>
+            <th:block th:each="genre : ${film.genreFilms}">
+                <h4 th:text="${genre.genreTittle}"></h4>
+            </th:block>
+            <h4><strong>Актеры: </strong></h4>
+            <div class="list-group">
+                <th:block th:each="actor:${film.actors}">
+                    <a th:href="@{/details/actor(actorId = ${actor.actorId})}" class="list-group-item"
+                       th:text="${actor.firstName} +' '+ ${actor.lastName}"></a>
+                </th:block>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

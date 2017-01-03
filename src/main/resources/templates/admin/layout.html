@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=2"/>
+    <script src="/public/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+    <script src="/public/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+    <script src="/public/js/validator.js" th:src="@{/js/validator.js}"></script>
+    <link rel="stylesheet" href="/public/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <style>
+        .navbar {
+            margin-bottom: 10px;
+            border-radius: 0;
+        }
+
+        .jumbotron {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div th:fragment="admin-header" class="jumbotron">
+    <div class="container text-center">
+        <h3>Admin panel</h3>
+    </div>
+</div>
+
+<nav th:fragment="admin-nav" class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/admin/" th:href="@{/}">Главная</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="cinema.html" th:href="@{/admin/cinema}"> Кинотеатры </a></li>
+                <li><a href="hall.html" th:href="@{/admin/hall}"> Кинозалы </a></li>
+                <!--<li><a href="session.html" th:href="@{/admin/session}"> Сеансы </a></li>-->
+                <li><a href="film.html" th:href="@{/admin/film}"> Фильмы </a></li>
+                <li><a href="discount.html" th:href="@{/admin/discount}">Скидки </a></li>
+                <li><a href="actor.html" th:href="@{/admin/actor}">Актеры</a></li>
+                <li><a href="user.html" th:href="@{/admin/user}">Пользователи</a></li>
+                <li><a href="genre.html" th:href="@{/admin/genre}">Жанры</a></li>
+                <li><a href="genre.html" th:href="@{/admin/ticket}">Билеты</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Кинотеатры</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=2"/>
+    <script src="/public/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+    <script src="/public/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+    <script src="/public/js/validator.js" th:src="@{/js/validator.js}"></script>
+    <link rel="stylesheet" href="/public/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="icon" href="/public/favicon.ico" th:href="@{/favicon.ico}"/>
+    <style>
+        .navbar {
+            margin-bottom: 10px;
+            border-radius: 0;
+        }
+
+        .jumbotron {
+            margin-bottom: 0;
+        }
+    </style>
+    <script>
+        function rowClicked(value) {
+            location.href = "/cinema?cinemaId=" + value;
+        }
+    </script>
+</head>
+
+<body>
+
+<header th:replace="layout :: header"></header>
+
+<div th:replace="layout :: nav"></div>
+
+<div class="container text-center">
+
+    <div class="table-responsive" align="center">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Название</th>
+                <th>Адрес</th>
+                <th>Телефон</th>
+                <th>Еmail</th>
+                <th></th>
+                <th></th>
+
+            </tr>
+            </thead>
+            <th:block th:each="cinema : ${allCinema}">
+
+                <tbody>
+                <td th:text="${cinema.cinemaTittle}"></td>
+                <td th:text="${cinema.cinemaAdress}"></td>
+                <td th:text="${cinema.telephoneNumber}"></td>
+                <td th:text="${cinema.eMail}"></td>
+
+                <td>
+                    <a th:href="@{/hall(cinemaId = ${cinema.cinemaId})}">
+                        <button type="button" class="btn btn-default">Залы</button>
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{/session(cinemaId = ${cinema.cinemaId})}">
+                        <button type="button" class="btn btn-default">Сеансы</button>
+                    </a>
+                </td>
+                </tbody>
+            </th:block>
+        </table>
+        <ul class="pagination">
+            <li th:each="iterStat : ${#numbers.sequence(1, allCinema.totalPages, 1)}"><a
+                    th:href="@{/cinema(page = ${(iterStat.intValue())})}"
+                    th:text="${iterStat.intValue()}"></a></li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

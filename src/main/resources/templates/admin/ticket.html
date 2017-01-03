@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Билеты</title>
+    <meta name="viewport" content="width=device-width, initial-scale=2"/>
+    <script src="/public/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+    <script src="/public/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+    <script src="/public/js/validator.js" th:src="@{/js/validator.js}"></script>
+    <link rel="stylesheet" href="/public/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <style>
+        .navbar {
+            margin-bottom: 10px;
+            border-radius: 0;
+        }
+
+        .jumbotron {
+            margin-bottom: 0;
+        }
+    </style>
+
+</head>
+<body>
+
+<header th:replace="admin/layout :: admin-header"></header>
+
+<div th:replace="admin/layout :: admin-nav"></div>
+
+<div class="container text-center">
+
+    <div class="table-responsive" align="center">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Кинотеатр</th>
+                <th>Кинозал</th>
+                <th>Фильм</th>
+                <th>Время</th>
+                <th>Продан</th>
+                <th>Ряд</th>
+                <th>Место</th>
+                <th>Цена</th>
+                <th></th>
+
+            </tr>
+            </thead>
+            <th:block th:each="ticket : ${allTickets.content}">
+                <tbody>
+                <td th:text="${ticket.filmSession.hall.cinema.cinemaTittle}"></td>
+                <td th:text="${ticket.filmSession.hall.hallTittle}"></td>
+                <td th:text="${ticket.filmSession.film.filmTittle}"></td>
+                <td th:text="${ticket.filmSession.date}"></td>
+                <div th:switch="${ticket.isSold}">
+                    <td th:case="0">Нет</td>
+                    <td th:case="1">Да</td>
+                </div>
+
+                <td th:text="${ticket.rowNumber}"></td>
+                <td th:text="${ticket.seat}"></td>
+                <td th:text="${ticket.price}"></td>
+
+                <td>
+                    <a th:href="@{/admin/delete/ticket (ticketId = ${ticket.ticketId})}">
+                        <button type="button" class="btn btn-default">Удалить</button>
+                    </a>
+                </td>
+                </tbody>
+            </th:block>
+        </table>
+    </div>
+    <ul class="pagination">
+        <li th:each="iterStat : ${#numbers.sequence(1, allTickets.totalPages, 1)}"><a
+                th:href="@{/admin/ticket(page = ${(iterStat.intValue())})}"
+                th:text="${iterStat.intValue()}"></a></li>
+    </ul>
+</div>
+</body>
+</html>

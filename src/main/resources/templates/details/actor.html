@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Актеры</title>
+    <meta name="viewport" content="width=device-width, initial-scale=2"/>
+    <script src="/public/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+    <script src="/public/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+    <script src="/public/js/validator.js" th:src="@{/js/validator.js}"></script>
+    <link rel="stylesheet" href="/public/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="icon" href="/public/favicon.ico" th:href="@{/favicon.ico}"/>
+    <style>
+        .navbar {
+            margin-bottom: 10px;
+            border-radius: 0;
+        }
+
+        .jumbotron {
+            margin-bottom: 0;
+        }
+    </style>
+
+</head>
+<body>
+
+<header th:replace="layout :: header"></header>
+
+<div th:replace="layout :: nav"></div>
+
+<div class="container">
+
+    <h3><strong>Актер: </strong></h3>
+    <h4 th:text="${actor.firstName} + ' ' +  ${actor.lastName}" id="firstName"></h4>
+
+
+    <h3><strong>Фильмы:</strong></h3>
+    <div class="col-lg-4">
+        <div class="list-group">
+            <th:block th:each="film:${actor.films}">
+                <a th:href="@{/details/film(filmId = ${film.filmId})}" class="list-group-item"
+                   th:text="${film.filmTittle}"></a>
+            </th:block>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Онлайн покупка билетов</title>
+    <meta name="viewport" content="width=device-width, initial-scale=2"/>
+    <script src="/public/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+    <script src="/public/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+    <script src="/public/js/validator.js" th:src="@{/js/validator.js}"></script>
+    <link rel="stylesheet" href="/public/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="icon" href="/public/favicon.ico" th:href="@{/favicon.ico}"/>
+    <style>
+        .navbar {
+            margin-bottom: 10px;
+            border-radius: 0;
+        }
+
+        .jumbotron {
+            margin-bottom: 0;
+        }
+    </style>
+
+</head>
+<body>
+<header th:replace="layout :: header"></header>
+
+<div th:replace="layout :: nav"></div>
+
+<div class="container text-center">
+    <div class="row">
+        <div class="col-sm-4" th:each="film : ${films}">
+            <div class="panel panel-primary">
+                <div class="panel-heading" th:text="${film.filmTittle}"></div>
+                <div class="panel-body"><a th:href="@{/details/film(filmId = ${film.filmId})}"><img
+                        th:src="@{/img/{id}.jpg(id = ${film.filmId})}" style="width: 100%; height: 450px"
+                        class="img-responsive"/></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

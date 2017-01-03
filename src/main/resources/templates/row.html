@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Ряды</title>
+    <meta name="viewport" content="width=device-width, initial-scale=2"/>
+    <script src="/public/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+    <script src="/public/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+    <script src="/public/js/validator.js" th:src="@{/js/validator.js}"></script>
+    <link rel="stylesheet" href="/public/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="icon" href="/public/favicon.ico" th:href="@{/favicon.ico}"/>
+    <style>
+        .navbar {
+            margin-bottom: 10px;
+            border-radius: 0;
+        }
+
+        .jumbotron {
+            margin-bottom: 0;
+        }
+    </style>
+    <script>
+        function rowClicked(rowIndex, hallId) {
+            location.href = "/row?rowIndex=" + rowIndex + "&hallId" + hallId;
+        }
+    </script>
+</head>
+<body>
+
+<header th:replace="layout :: header"></header>
+
+<div th:replace="layout :: nav"></div>
+
+<div class="container text-center">
+
+    <div class="table-responsive" align="center">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Кинотеатр</th>
+                <th>Зал</th>
+                <th>Номер</th>
+                <th>Количество мест</th>
+                <th></th>
+                <th></th>
+
+            </tr>
+            </thead>
+            <th:block th:each="row : ${rows}">
+
+                <tbody>
+                <td th:text="${row.hall.cinema.cinemaTittle}"></td>
+                <td th:text="${row.hall.hallTittle}"></td>
+                <td th:text="${row.rowIndex}"></td>
+                <td th:text="${row.seats}"></td>
+
+                </tbody>
+            </th:block>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>

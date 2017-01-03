@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Пользователи</title>
+    <meta name="viewport" content="width=device-width, initial-scale=2"/>
+    <script src="/public/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+    <script src="/public/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+    <script src="/public/js/validator.js" th:src="@{/js/validator.js}"></script>
+    <link rel="stylesheet" href="/public/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <style>
+        .navbar {
+            margin-bottom: 10px;
+            border-radius: 0;
+        }
+
+        .jumbotron {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header th:replace="admin/layout :: admin-header"></header>
+
+<div th:replace="admin/layout :: admin-nav"></div>
+
+<div class="container text-center">
+
+    <div class="table-responsive" align="center">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Телефон</th>
+                <th>Email</th>
+                <th></th>
+                <th></th>
+
+            </tr>
+            </thead>
+            <th:block th:each="user : ${users}">
+
+                <tbody>
+                <td th:text="${user.firstName}"></td>
+                <td th:text="${user.lastName}"></td>
+                <td th:text="${user.telephone}"></td>
+                <td th:text="${user.email}"></td>
+                <td>
+                    <a th:href="@{/admin/edit/user(userId= ${user.userId})}">
+                        <button type="button" class="btn btn-default">Редактировать</button>
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{/admin/delete/user (userId = ${user.userId})}">
+                        <button type="button" class="btn btn-default">Удалить</button>
+                    </a>
+                </td>
+                </tbody>
+            </th:block>
+        </table>
+    </div>
+    <br/>
+    <a th:href="@{/admin/add/user}">
+        <button type="button" class="btn btn-default">Новый пользователь</button>
+    </a>
+</div>
+</body>
+</html>

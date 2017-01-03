@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Редактиовать пользователя</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=2"/>
+    <script src="/public/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+    <script src="/public/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+    <script src="/public/js/validator.js" th:src="@{/js/validator.js}"></script>
+    <link rel="stylesheet" href="/public/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <style>
+        .navbar {
+            margin-bottom: 10px;
+            border-radius: 0;
+        }
+
+        .jumbotron {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header th:replace="admin/layout :: admin-header"></header>
+
+<div th:replace="admin/layout :: admin-nav"></div>
+
+<div class="container text-center">
+
+    <form class="form-vertical" data-toggle="validator" role="form" action="#" th:action="@{/admin/edit/user}"
+          th:object="${user}" method="post">
+
+        <div class="form-group">
+            <input class="form-control" type="hidden"
+                   th:field="*{userId}"/>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Имя</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" placeholder="Введите имя пользователя"
+                       required="required" th:field="*{firstName}"/>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Фамилия</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" placeholder="Введите фамилию пользователя"
+                       required="required" th:field="*{lastName}"/>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Телефон</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text"
+                       placeholder="Введите телефон пользователя" required="required"
+                       th:field="*{telephone}"/>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Электронная почта</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="email"
+                       placeholder="Введите электронную почту пользователя" required="required"
+                       th:field="*{email}"/>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Внести изменения</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Сеансы</title>
+    <meta name="viewport" content="width=device-width, initial-scale=2"/>
+    <script src="/public/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+    <script src="/public/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+    <script src="/public/js/validator.js" th:src="@{/js/validator.js}"></script>
+    <link rel="stylesheet" href="/public/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="icon" href="/public/favicon.ico" th:href="@{/favicon.ico}"/>
+    <style>
+        .navbar {
+            margin-bottom: 10px;
+            border-radius: 0;
+        }
+
+        .jumbotron {
+            margin-bottom: 0;
+        }
+    </style>
+
+</head>
+<body>
+
+<header th:replace="layout :: header"></header>
+
+<div th:replace="layout :: nav"></div>
+
+<div class="container">
+
+    <div class="col-lg-5">
+        <img th:src="@{/img/{id}.jpg(id = ${filmSession.film.filmId})}" style="width: 400px;"/>
+    </div>
+    <div class="col-sm-4">
+        <label>Кинотеатр: </label>
+        <h5 th:text="${filmSession.hall.cinema.cinemaTittle}"></h5>
+        <label>Кинозал: </label>
+        <h5 th:text="${filmSession.hall.hallTittle}"></h5>
+        <label>Фильм: </label>
+        <a th:href="@{/details/film (filmId = ${filmSession.film.filmId})}"><h5
+                th:text="${filmSession.film.filmTittle}"></h5></a>
+        <label>Возрастное ограничение: </label>
+        <h5 th:text="${filmSession.film.restriction} + '+'"></h5>
+        <label>Время: </label>
+        <h5 th:text="${filmSession.date}"></h5>
+        <a th:href="@{/tickets (filmSessionId = ${filmSession.filmSessionId})}">
+            <button type="button" class="btn btn-default">Купить билеты</button>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Фильмы</title>
+    <meta name="viewport" content="width=device-width, initial-scale=2"/>
+    <script src="/public/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+    <script src="/public/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+    <script src="/public/js/validator.js" th:src="@{/js/validator.js}"></script>
+    <link rel="stylesheet" href="/public/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="/public/css/searchform.css" th:href="@{/css/searchform.css}"/>
+    <link rel="icon" href="/public/favicon.ico" th:href="@{/favicon.ico}"/>
+    <style>
+        .navbar {
+            margin-bottom: 10px;
+            border-radius: 0;
+        }
+
+        .jumbotron {
+            margin-bottom: 0;
+        }
+    </style>
+    <script>
+        function rowClicked(value) {
+            location.href = "/details/film?filmId=" + value;
+        }
+    </script>
+</head>
+<body>
+
+<header th:replace="layout :: header"></header>
+
+<div th:replace="layout :: nav"></div>
+
+<div class="container">
+    <div class="col-lg-12 ">
+        <form th:action="@{/film}" method="get">
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" class="form-control input-lg" placeholder="Поиск по названию" name="filmTittle"/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <br/>
+    <br/>
+    <div class="table-responsive col-lg-12">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Название</th>
+                <th>Длительность</th>
+                <th>Год выпуска</th>
+                <th>Страна производства</th>
+                <th>Возрастное ограничение</th>
+                <th>Премьера</th>
+                <th></th>
+
+            </tr>
+            </thead>
+            <tr th:each="film : ${allFilm.content}" th:onclick="'javascript:rowClicked(\'' + ${film.filmId} + '\');'"
+                style="cursor: pointer">
+                <td th:text="${film.filmTittle}"></td>
+                <td th:text="${film.filmDuration}"></td>
+                <td th:text="${film.year}"></td>
+                <td th:text="${film.country}"></td>
+                <td th:text="${film.restriction} + '+'"></td>
+                <td th:text="${film.startFrom}"></td>
+                <td>
+                    <a th:href="@{/session(filmId = ${film.filmId})}">
+                        <button type="button" class="btn btn-default">Сеансы</button>
+                    </a>
+                </td>
+
+            </tr>
+        </table>
+
+    </div>
+    <div class="col-lg-2 col-lg-offset-5 text-center">
+        <ul class="pagination">
+            <li th:each="iterStat : ${#numbers.sequence(1, allFilm.totalPages, 1)}"><a
+                    th:href="@{/film(page = ${(iterStat.intValue())})}"
+                    th:text="${iterStat.intValue()}"></a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
