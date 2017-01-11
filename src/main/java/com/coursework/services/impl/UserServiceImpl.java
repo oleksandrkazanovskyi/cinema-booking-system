@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
     public void updateUser(User user) {
         if (user.getTickets() != null) {
             for (Ticket t : user.getTickets()) {
-                t.setIsSold(1);
+                //t.setIsSold(1);
                 t.setUserId(user.getUserId());
             }
         }

@@ -7,40 +7,30 @@ import java.io.Serializable;
 public class RowPK implements Serializable {
     private int rowIndex;
     private int hallId;
-    private int cinemaId;
 
     public RowPK() {
     }
 
     @Column(name = "Row_index")
     @Id
-    public int getRowIndex() {
+    public Integer getRowIndex() {
         return rowIndex;
     }
 
-    public void setRowIndex(int rowIndex) {
+    public void setRowIndex(Integer rowIndex) {
         this.rowIndex = rowIndex;
     }
 
     @Column(name = "Hall_ID")
     @Id
-    public int getHallId() {
+    public Integer getHallId() {
         return hallId;
     }
 
-    public void setHallId(int hallId) {
+    public void setHallId(Integer hallId) {
         this.hallId = hallId;
     }
 
-    @Column(name = "Cinema_ID")
-    @Id
-    public int getCinemaId() {
-        return cinemaId;
-    }
-
-    public void setCinemaId(int cinemaId) {
-        this.cinemaId = cinemaId;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -51,7 +41,6 @@ public class RowPK implements Serializable {
 
         if (rowIndex != rowPK.rowIndex) return false;
         if (hallId != rowPK.hallId) return false;
-        if (cinemaId != rowPK.cinemaId) return false;
 
         return true;
     }
@@ -60,7 +49,6 @@ public class RowPK implements Serializable {
     public int hashCode() {
         int result = rowIndex;
         result = 31 * result + hallId;
-        result = 31 * result + cinemaId;
         return result;
     }
 }

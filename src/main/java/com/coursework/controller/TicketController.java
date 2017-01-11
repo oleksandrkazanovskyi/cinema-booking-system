@@ -3,6 +3,7 @@ package com.coursework.controller;
 import com.coursework.model.Order;
 import com.coursework.model.Ticket;
 import com.coursework.model.User;
+import com.coursework.services.RowService;
 import com.coursework.services.TicketService;
 import com.coursework.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,11 @@ public class TicketController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private RowService rowService;
+
     @RequestMapping(value = "/admin/edit/ticket", method = RequestMethod.GET, params = {"ticketId"})
-    public String getTicketEdit(@RequestParam int ticketId, Model model) {
+    public String editTicket(@RequestParam int ticketId, Model model) {
         model.addAttribute("ticket", ticketService.getTicketByID(ticketId));
         return "/admin/edit/ticket";
     }
@@ -50,9 +54,9 @@ public class TicketController {
     }
 
     @RequestMapping(value = "/tickets", method = RequestMethod.GET)
-    public String getTicketBySession(@RequestParam int filmSessionId, Model model) {
+    public String allTicketBySession(@RequestParam int filmSessionId, Model model) {
         model.addAttribute("order", new Order());
-        model.addAttribute("allTicket", ticketService.getTicketBySessionNotSold(filmSessionId));
+        model.addAttribute("allRow", rowService.getRowBySession(filmSessionId));
         return "/tickets";
     }
 
@@ -80,5 +84,4 @@ public class TicketController {
         return userName;
     }
 }
-// TODO: 25.12.2016 выпадащий список в выбором ряда и места
 

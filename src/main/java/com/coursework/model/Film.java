@@ -1,22 +1,10 @@
 package com.coursework.model;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.List;
 import java.util.Set;
 
 @Entity
-@NamedStoredProcedureQueries({
-        @NamedStoredProcedureQuery(name = "film_today",
-                procedureName = "film_today",
-                parameters = {
-                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "param1", type = Timestamp.class)
-
-                },
-                resultClasses = {Film.class}
-        )})
 public class Film {
     private Integer filmId;
     private String filmTittle;
@@ -31,16 +19,6 @@ public class Film {
     private Set<Genre> genreFilms;
 
     public Film() {
-    }
-
-    public Film(String filmTittle, int filmDuration, double filmRating, String description, String year, String country, int restriction) {
-        this.filmTittle = filmTittle;
-        this.filmDuration = filmDuration;
-        this.filmRating = filmRating;
-        this.description = description;
-        this.year = year;
-        this.country = country;
-        this.restriction = restriction;
     }
 
     @Id
@@ -74,7 +52,6 @@ public class Film {
         this.filmDuration = filmDuration;
     }
 
-
     @Column(name = "Film_Rating")
     public double getFilmRating() {
         return filmRating;
@@ -83,7 +60,6 @@ public class Film {
     public void setFilmRating(double filmRating) {
         this.filmRating = filmRating;
     }
-
 
     @Column(name = "Desctiption")
     public String getDescription() {
@@ -94,7 +70,6 @@ public class Film {
         this.description = desctiption;
     }
 
-
     public String getYear() {
         return year;
     }
@@ -102,7 +77,6 @@ public class Film {
     public void setYear(String year) {
         this.year = year;
     }
-
 
     @Column(name = "Country")
     public String getCountry() {

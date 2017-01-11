@@ -37,12 +37,9 @@
                 <th></th>
                 <th></th>
                 <th></th>
-
-
             </tr>
             </thead>
             <th:block th:each="actor : ${actors}">
-
                 <tbody>
                 <td th:text="${actor.firstName}"></td>
                 <td th:text="${actor.lastName}"></td>
@@ -61,8 +58,7 @@
         </table>
     </div>
     <br/>
-
-    <a href="/admin/add/cinema.html" th:href="@{/admin/add/actor}">
+    <a th:href="@{/admin/add/actor}">
         <button type="button" class="btn btn-default">Новый актер</button>
     </a>
 </div>

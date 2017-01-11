@@ -1,7 +1,9 @@
 package com.coursework.model;
 
-import javax.persistence.*;
-import java.util.Collection;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class Discount {
@@ -13,11 +15,6 @@ public class Discount {
     public Discount() {
     }
 
-    public Discount(String description, int percent, String tittle) {
-        this.description = description;
-        this.percent = percent;
-        this.tittle = tittle;
-    }
 
     @Id
     @GeneratedValue

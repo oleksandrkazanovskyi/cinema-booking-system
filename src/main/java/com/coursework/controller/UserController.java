@@ -51,21 +51,6 @@ public class UserController {
         return "redirect:/admin/user";
     }
 
-    @RequestMapping(value = "/admin/add/user", method = RequestMethod.GET)
-    public String getUserAdd(Model model) {
-        model.addAttribute("user", new User());
-        return "/admin/add/user";
-    }
-
-    @RequestMapping(value = "/admin/add/user", method = RequestMethod.POST)
-    public String newUser(@Valid User user, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            return "error";
-        }
-        userService.save(user);
-        return "redirect:/admin/user";
-    }
-
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String getUserDetails(Model model) {
         model.addAttribute("user", userService.findByUsername(getPrincipal()));
@@ -78,7 +63,6 @@ public class UserController {
     public String addUserDiscount(@Valid User user, Model model, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "/user?error";
-
         userService.updateUser(user);
         return "redirect:/user";
     }

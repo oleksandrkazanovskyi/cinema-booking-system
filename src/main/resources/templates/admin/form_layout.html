@@ -140,77 +140,66 @@
             <input class="form-control" type="hidden"
                    th:field="*{filmId}"/>
         </div>
-
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Название</label>
-            <div class="col-sm-10">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Название</label>
                 <input class="form-control" type="text" placeholder="Введите название фильма"
                        required="required" th:field="*{filmTittle}"/>
                 <div class="help-block with-errors"></div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Описание</label>
-            <div class="col-sm-10">
-                <input class="form-control" type="text" placeholder="Введите описание фильма"
-                       required="required" th:field="*{description}" maxlength="600" minlength="30"/>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Описание</label>
+                <textarea class="form-control" type="text" placeholder="Введите описание фильма"
+                          required="required" th:field="*{description}" maxlength="600" minlength="30"
+                          style="height: 150px"/>
                 <div class="help-block with-errors"></div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Возрастное ограничение</label>
-            <div class="col-sm-10">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Возрастное ограничение</label>
                 <input class="form-control" type="number"
                        placeholder="Введите ограничение по возрасту" required="required" min="0" max="18"
                        th:field="*{restriction}"/>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Длительность</label>
-            <div class="col-sm-10">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Длительность</label>
                 <input class="form-control" type="number"
                        placeholder="Введите длительность фильма в минутах" required="required" min="20" max="300"
                        th:field="*{filmDuration}"/>
                 <div class="help-block with-errors"></div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Год выпуска </label>
-            <div class="col-sm-10">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Год выпуска </label>
                 <input class="form-control" type="number" placeholder="Введите год выпуска фильма" required="required"
                        min="1900" max="2017" th:field="*{year}"/>
                 <div class="help-block with-errors"></div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Страна производства </label>
-            <div class="col-sm-10">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Страна производства </label>
                 <input class="form-control" type="text" placeholder="Введите страну производства фильма"
                        required="required" th:field="*{country}" min="2"/>
                 <div class="help-block with-errors"></div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Дата начала показа</label>
-            <div class="col-sm-10">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Дата начала показа</label>
                 <input class="form-control" type="date"
                        required="required" th:field="*{startFrom}" min="2016-01-01" max="2018-01-01"/>
                 <div class="help-block with-errors"></div>
             </div>
-        </div>
 
-        <label class="btn btn-default btn-file">
-            Выбрать постер <input type="file" style="display: none;" name="image"/>
-        </label>
 
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Внести изменения</button>
+            <label class="btn btn-default btn-file">
+                Выбрать постер <input type="file" style="display: none;" name="image"/>
+            </label>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Внести изменения</button>
+            </div>
         </div>
     </form>
 </div>
@@ -330,10 +319,10 @@
         </div>
 
 
-        <div class="form-group">
-            <input class="form-control" type="hidden"
-                   th:field="*{cinemaId}"/>
-        </div>
+        <!-- <div class="form-group">
+             <input class="form-control" type="hidden"
+                    th:field="*{cinemaId}"/>
+         </div>-->
 
         <div class="help-block" th:if="${#fields.hasErrors('Date')}" style="color: #ac2925">В это время уже проводится
             сеанс

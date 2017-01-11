@@ -1,7 +1,5 @@
 package com.coursework.services.impl;
 
-import com.coursework.model.Cinema;
-import com.coursework.model.Hall;
 import com.coursework.model.Row;
 import com.coursework.repository.RowRepository;
 import com.coursework.services.RowService;
@@ -30,11 +28,16 @@ public class RowServiceImpl implements RowService {
         return rowRepository.findByRowIndexAndHallId(rowIndex, hallId);
     }
 
-    public List<Row> getRowByCinemaAndHall(Cinema cinema, Hall hall) {
-        return rowRepository.findByCinemaIdAndHallId(cinema.getCinemaId(), hall.getHallId());
+    public List<Row> getRowByHall(Integer hallId) {
+        return rowRepository.findByHallId(hallId);
     }
 
     public List<Row> getAllRow() {
         return rowRepository.findAll();
+    }
+
+    @Override
+    public List<Row> getRowBySession(Integer filmSessionId) {
+        return rowRepository.getRowBySession(filmSessionId);
     }
 }

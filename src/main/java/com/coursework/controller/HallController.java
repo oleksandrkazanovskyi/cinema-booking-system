@@ -22,26 +22,9 @@ public class HallController {
     @Autowired
     private HallService hallService;
 
-    @RequestMapping(value = "/admin/add/hall", method = RequestMethod.GET)
-    public String getHallAdd(Model model) {
-        model.addAttribute("hall", new Hall());
-        model.addAttribute("cinemas", cinemaService.getAllCinema());
-        return "/admin/add/hall";
-    }
-
-    @RequestMapping(value = "/admin/add/hall", method = RequestMethod.POST)
-    public String newHall(@Valid Hall hall, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            return "redirect:/admin/hall";
-        }
-        hallService.addHall(hall);
-        return "redirect:/admin/hall";
-    }
-
     @RequestMapping(value = "/admin/hall", method = RequestMethod.GET)
     public String allHall(Model model) {
         model.addAttribute("halls", hallService.getAllHall());
-
         return "/admin/hall";
     }
 
@@ -49,6 +32,22 @@ public class HallController {
     public String allHallUser(Model model) {
         model.addAttribute("halls", hallService.getAllHall());
         return "/hall";
+    }
+
+    @RequestMapping(value = "/admin/add/hall", method = RequestMethod.GET)
+    public String addHall(Model model) {
+        model.addAttribute("hall", new Hall());
+        model.addAttribute("cinemas", cinemaService.getAllCinema());
+        return "/admin/add/hall";
+    }
+
+    @RequestMapping(value = "/admin/add/hall", method = RequestMethod.POST)
+    public String addHall(@Valid Hall hall, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "redirect:/admin/hall";
+        }
+        hallService.addHall(hall);
+        return "redirect:/admin/hall";
     }
 
     @RequestMapping(value = "/hall", method = RequestMethod.GET, params = {"cinemaId"})
@@ -64,8 +63,9 @@ public class HallController {
     }
 
     @RequestMapping(value = "/admin/edit/hall", method = RequestMethod.GET)
-    public String getHallEdit(@RequestParam int hallId, Model model) {
+    public String editHall(@RequestParam int hallId, Model model) {
         model.addAttribute("hall", hallService.getHallByID(hallId));
+        model.addAttribute("cinemas", cinemaService.getAllCinema());
         return "/admin/edit/hall";
     }
 

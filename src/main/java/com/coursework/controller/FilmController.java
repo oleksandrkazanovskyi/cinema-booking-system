@@ -55,13 +55,13 @@ public class FilmController {
     }
 
     @RequestMapping(value = "/admin/add/film", method = RequestMethod.GET)
-    public String getFilmAdd(Model model) {
+    public String addFilm(Model model) {
         model.addAttribute("film", new Film());
         return "/admin/add/film";
     }
 
     @RequestMapping(value = "/admin/add/film", method = RequestMethod.POST)
-    public String newFilm(@Valid Film film, @RequestParam(value = "image") MultipartFile image, BindingResult bindingResult, Model model) {
+    public String addFilm(@Valid Film film, @RequestParam(value = "image") MultipartFile image, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "error";
         }
@@ -90,20 +90,20 @@ public class FilmController {
     }
 
     @RequestMapping(value = "/admin/edit/film", method = RequestMethod.GET, params = {"filmId"})
-    public String getFilmEdit(@RequestParam int filmId, Model model) {
+    public String editFilm(@RequestParam int filmId, Model model) {
         model.addAttribute("film", filmService.getFilmByID(filmId));
         return "/admin/edit/film";
     }
 
     @RequestMapping(value = "/admin/add/genre_to_film", method = RequestMethod.GET, params = {"filmId"})
-    public String getGenresToAdd(@RequestParam int filmId, Model model) {
+    public String addGenres(@RequestParam int filmId, Model model) {
         model.addAttribute("allGenres", genreService.getAllGenre());
         model.addAttribute("film", filmService.getFilmByID(filmId));
         return "/admin/add/genre_to_film";
     }
 
     @RequestMapping(value = "/admin/add/genre_to_film", method = RequestMethod.POST)
-    public String addGenresToFilm(@Valid Film film, Model model, BindingResult bindingResult) {
+    public String addGenres(@Valid Film film, Model model, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "error";
         }
@@ -112,20 +112,20 @@ public class FilmController {
     }
 
     @RequestMapping(value = "/details/film", method = RequestMethod.GET)
-    public String getFilmDetails(@RequestParam int filmId, Model model) {
+    public String getFilm(@RequestParam int filmId, Model model) {
         model.addAttribute("film", filmService.getFilmByID(filmId));
         return "/details/film";
     }
 
     @RequestMapping(value = "/admin/add/actor_to_film", method = RequestMethod.GET, params = {"filmId"})
-    public String getActorsToAdd(@RequestParam int filmId, Model model) {
+    public String addActors(@RequestParam int filmId, Model model) {
         model.addAttribute("allActors", actorService.getAllActors());
         model.addAttribute("film", filmService.getFilmByID(filmId));
         return "/admin/add/actor_to_film";
     }
 
     @RequestMapping(value = "/admin/add/actor_to_film", method = RequestMethod.POST)
-    public String addActorsToFilm(@Valid Film film, Model model, BindingResult bindingResult) {
+    public String addActors(@Valid Film film, Model model, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "error";
         }

@@ -2,17 +2,18 @@ package com.coursework.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Collection;
 
 @Entity
-@Table(name = "film_session", schema = "courseworkdb")
+@Table(name = "film_session", schema = "courseworkdb", catalog = "")
 public class FilmSession {
     private Integer filmSessionId;
     private Integer hallId;
     private Integer filmId;
-    private Integer cinemaId;
     private Timestamp date;
     private Film film;
     private Hall hall;
+    private Collection<Ticket> tickets;
 
     @Id
     @GeneratedValue
@@ -46,16 +47,6 @@ public class FilmSession {
     }
 
     @Basic
-    @Column(name = "Cinema_ID")
-    public Integer getCinemaId() {
-        return cinemaId;
-    }
-
-    public void setCinemaId(Integer cinemaId) {
-        this.cinemaId = cinemaId;
-    }
-
-    @Basic
     @Column(name = "Date")
     public Timestamp getDate() {
         return date;
@@ -76,13 +67,22 @@ public class FilmSession {
     }
 
     @ManyToOne
-    @JoinColumns({@JoinColumn(name = "Hall_ID", referencedColumnName = "Hall_ID", insertable = false, updatable = false), @JoinColumn(name = "Cinema_ID", referencedColumnName = "Cinema_ID", insertable = false, updatable = false)})
+    @JoinColumns({@JoinColumn(name = "Hall_ID", referencedColumnName = "Hall_ID", insertable = false, updatable = false)})
     public Hall getHall() {
         return hall;
     }
 
     public void setHall(Hall hall) {
         this.hall = hall;
+    }
+
+    @OneToMany(mappedBy = "filmSession")
+    public Collection<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(Collection<Ticket> tickets) {
+        this.tickets = tickets;
     }
 
     @Override
@@ -96,7 +96,6 @@ public class FilmSession {
             return false;
         if (hallId != null ? !hallId.equals(that.hallId) : that.hallId != null) return false;
         if (filmId != null ? !filmId.equals(that.filmId) : that.filmId != null) return false;
-        if (cinemaId != null ? !cinemaId.equals(that.cinemaId) : that.cinemaId != null) return false;
         return date != null ? date.equals(that.date) : that.date == null;
 
     }
@@ -106,7 +105,6 @@ public class FilmSession {
         int result = filmSessionId != null ? filmSessionId.hashCode() : 0;
         result = 31 * result + (hallId != null ? hallId.hashCode() : 0);
         result = 31 * result + (filmId != null ? filmId.hashCode() : 0);
-        result = 31 * result + (cinemaId != null ? cinemaId.hashCode() : 0);
         result = 31 * result + (date != null ? date.hashCode() : 0);
         return result;
     }

@@ -5,15 +5,16 @@ import java.io.Serializable;
 
 @Entity
 public class Ticket implements Serializable {
-    private int ticketId;
-    private int filmSessionId;
-    private int rowNumber;
-    private int seat;
+    private Integer ticketId;
+    private Integer filmSessionId;
+    private Integer rowNumber;
+    private Integer seat;
     private Integer userId;
-    private int price;
-    private int isSold;
+    private Integer price;
+    private Integer hallId;
     private FilmSession filmSession;
     private User user;
+    private Row row;
 
     public Ticket() {
     }
@@ -22,47 +23,47 @@ public class Ticket implements Serializable {
     @Id
     @GeneratedValue
     @Column(name = "Ticket_ID")
-    public int getTicketId() {
+    public Integer getTicketId() {
         return ticketId;
     }
 
-    public void setTicketId(int ticketId) {
+    public void setTicketId(Integer ticketId) {
         this.ticketId = ticketId;
     }
 
-    @Column(name = "film_session_ID")
-    public int getFilmSessionId() {
+    @Column(name = "film_Session_ID")
+    public Integer getFilmSessionId() {
         return filmSessionId;
     }
 
-    public void setFilmSessionId(int sessionId) {
+    public void setFilmSessionId(Integer sessionId) {
         this.filmSessionId = sessionId;
     }
 
-  /*  @Column(name = "Hall_ID")
-    public int getHallId() {
+    @Column(name = "hall_id")
+    public Integer getHallId() {
         return hallId;
     }
 
-    public void setHallId(int hallId) {
+    public void setHallId(Integer hallId) {
         this.hallId = hallId;
-    }*/
+    }
 
-    @Column(name = "Row_number")
-    public int getRowNumber() {
+    @Column(name = "Row_index")
+    public Integer getRowNumber() {
         return rowNumber;
     }
 
-    public void setRowNumber(int rowNumber) {
+    public void setRowNumber(Integer rowNumber) {
         this.rowNumber = rowNumber;
     }
 
     @Column(name = "Seat")
-    public int getSeat() {
+    public Integer getSeat() {
         return seat;
     }
 
-    public void setSeat(int seat) {
+    public void setSeat(Integer seat) {
         this.seat = seat;
     }
 
@@ -75,45 +76,17 @@ public class Ticket implements Serializable {
         this.userId = userId;
     }
 
-   /* @Column(name = "Film_ID")
-    public Integer getFilmId() {
-        return filmId;
-    }
-
-    public void setFilmId(Integer filmId) {
-        this.filmId = filmId;
-    }
-
-    @Column(name = "Cinema_ID")
-    public int getCinemaId() {
-        return cinemaId;
-    }
-
-    public void setCinemaId(int cinemaId) {
-        this.cinemaId = cinemaId;
-    }*/
-
     @Column(name = "price")
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
-    }
-
-    @Column(name = "is_sold")
-    public int getIsSold() {
-        return isSold;
-    }
-
-    public void setIsSold(int sold) {
-        isSold = sold;
     }
 
     @ManyToOne
     @JoinColumn(name = "film_session_id", referencedColumnName = "film_session_id", insertable = false, updatable = false)
-    //@JoinColumns({@JoinColumn(name = "film_Session_id", referencedColumnName = "film_Session_ID", insertable = false, updatable = false), @JoinColumn(name = "Hall_ID", referencedColumnName = "Hall_ID", insertable = false, updatable = false), @JoinColumn(name = "Film_ID", referencedColumnName = "Film_ID", insertable = false, updatable = false), @JoinColumn(name = "Cinema_ID", referencedColumnName = "Cinema_ID", insertable = false, updatable = false)})
     public FilmSession getFilmSession() {
         return filmSession;
     }
@@ -132,8 +105,40 @@ public class Ticket implements Serializable {
         this.user = userByUserId;
     }
 
+    @ManyToOne
+    @JoinColumns({@JoinColumn(name = "Row_index", referencedColumnName = "Row_index", nullable = false, insertable = false, updatable = false), @JoinColumn(name = "hall_id", referencedColumnName = "Hall_ID", nullable = false, insertable = false, updatable = false)})
+    public Row getRow() {
+        return row;
+    }
+
+    public void setRow(Row row) {
+        this.row = row;
+    }
+
     @Override
     public String toString() {
         return ticketId + "";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Ticket ticket = (Ticket) o;
+
+        if (filmSessionId != ticket.filmSessionId) return false;
+        if (price != ticket.price) return false;
+        if (hallId != ticket.hallId) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = filmSessionId;
+        result = 31 * result + price;
+        result = 31 * result + hallId;
+        return result;
     }
 }

@@ -2,7 +2,7 @@ package com.coursework.controller;
 
 import com.coursework.model.Actor;
 import com.coursework.services.ActorService;
-import com.coursework.services.impl.FilmServiceImpl;
+import com.coursework.services.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -21,7 +21,7 @@ public class ActorController {
     private ActorService actorService;
 
     @Autowired
-    private FilmServiceImpl filmService;
+    private FilmService filmService;
 
     @RequestMapping(value = "/admin/actor", method = RequestMethod.GET)
     public String allActor(Model model) {
@@ -31,7 +31,6 @@ public class ActorController {
 
     @RequestMapping(value = "/actor", method = RequestMethod.GET)
     public String allActorUser(@RequestParam(required = false, defaultValue = "1") Integer page, Model model) {
-        // model.addAttribute("actors", actorService.getAllActors());
         Page<Actor> pages = actorService.getAllActorsPage(page);
         model.addAttribute("allActor", pages);
         return "/actor";
@@ -44,14 +43,14 @@ public class ActorController {
     }
 
     @RequestMapping(value = "/admin/edit/actor", method = RequestMethod.GET, params = {"actorId"})
-    public String getActorEdit(@RequestParam int actorId, Model model) {
+    public String editActor(@RequestParam int actorId, Model model) {
         model.addAttribute("actor", actorService.getActorByID(actorId));
         return "/admin/edit/actor";
     }
 
 
     @RequestMapping(value = "/admin/add/actor", method = RequestMethod.GET)
-    public String getActorAdd(Model model) {
+    public String addActor(Model model) {
         model.addAttribute("actor", new Actor());
         return "/admin/add/actor";
     }
@@ -66,7 +65,7 @@ public class ActorController {
     }
 
     @RequestMapping(value = "/details/actor", method = RequestMethod.GET)
-    public String getActorDetails(@RequestParam int actorId, Model model) {
+    public String getActor(@RequestParam int actorId, Model model) {
         model.addAttribute("actor", actorService.getActorByID(actorId));
         return "/details/actor";
     }

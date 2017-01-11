@@ -33,7 +33,7 @@ public class CinemaController {
     }
 
     @RequestMapping(value = "/admin/add/cinema", method = RequestMethod.GET)
-    public String getCinemaAdd(Model model) {
+    public String addCinema(Model model) {
         model.addAttribute("cinema", new com.coursework.model.Cinema());
         return "/admin/add/cinema";
     }
@@ -51,7 +51,7 @@ public class CinemaController {
     }
 
     @RequestMapping(value = "/admin/edit/cinema", method = RequestMethod.GET, params = {"cinemaId"})
-    public String getCinemaEdit(@RequestParam int cinemaId, Model model) {
+    public String editCinema(@RequestParam int cinemaId, Model model) {
         model.addAttribute("cinema", cinemaService.getCinemaByID(cinemaId));
         return "/admin/edit/cinema";
     }

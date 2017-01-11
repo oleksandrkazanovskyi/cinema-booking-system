@@ -36,7 +36,7 @@
                 <th>Фамилия</th>
                 <th>Телефон</th>
                 <th>Email</th>
-                <th></th>
+                <th>Логин</th>
                 <th></th>
 
             </tr>
@@ -48,11 +48,7 @@
                 <td th:text="${user.lastName}"></td>
                 <td th:text="${user.telephone}"></td>
                 <td th:text="${user.email}"></td>
-                <td>
-                    <a th:href="@{/admin/edit/user(userId= ${user.userId})}">
-                        <button type="button" class="btn btn-default">Редактировать</button>
-                    </a>
-                </td>
+                <td th:text="${user.username}"></td>
                 <td>
                     <a th:href="@{/admin/delete/user (userId = ${user.userId})}">
                         <button type="button" class="btn btn-default">Удалить</button>
@@ -62,10 +58,7 @@
             </th:block>
         </table>
     </div>
-    <br/>
-    <a th:href="@{/admin/add/user}">
-        <button type="button" class="btn btn-default">Новый пользователь</button>
-    </a>
+
 </div>
 </body>
 </html>

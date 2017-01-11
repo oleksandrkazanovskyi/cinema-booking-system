@@ -2,63 +2,66 @@ package com.coursework.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
 @IdClass(RowPK.class)
 public class Row implements Serializable {
     private int rowIndex;
     private int hallId;
-    private int cinemaId;
     private int seats;
     private Hall hall;
+    private Collection<Ticket> tickets;
 
     public Row() {
     }
 
-    public Row(int rowIndex, int hallId, int cinemaId, int seats) {
-        this.rowIndex = rowIndex;
-        this.hallId = hallId;
-        this.cinemaId = cinemaId;
-        this.seats = seats;
-    }
-
     @Id
     @Column(name = "Row_index")
-    public int getRowIndex() {
+    public Integer getRowIndex() {
         return rowIndex;
     }
 
-    public void setRowIndex(int rowIndex) {
+    public void setRowIndex(Integer rowIndex) {
         this.rowIndex = rowIndex;
     }
 
     @Id
     @Column(name = "Hall_ID")
-    public int getHallId() {
+    public Integer getHallId() {
         return hallId;
     }
 
-    public void setHallId(int hallId) {
+    public void setHallId(Integer hallId) {
         this.hallId = hallId;
     }
 
-    @Id
-    @Column(name = "Cinema_ID")
-    public int getCinemaId() {
-        return cinemaId;
-    }
-
-    public void setCinemaId(int cinemaId) {
-        this.cinemaId = cinemaId;
-    }
-
     @Column(name = "Seats")
-    public int getSeats() {
+    public Integer getSeats() {
         return seats;
     }
 
-    public void setSeats(int seats) {
+    public void setSeats(Integer seats) {
         this.seats = seats;
+    }
+
+    @OneToMany(mappedBy = "row")
+    public Collection<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(Collection<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "Hall_ID", referencedColumnName = "Hall_ID", nullable = false, insertable = false, updatable = false)
+    public Hall getHall() {
+        return hall;
+    }
+
+    public void setHall(Hall hall) {
+        this.hall = hall;
     }
 
     @Override
@@ -70,39 +73,24 @@ public class Row implements Serializable {
 
         if (rowIndex != row.rowIndex) return false;
         if (hallId != row.hallId) return false;
-        if (cinemaId != row.cinemaId) return false;
-        if (seats != row.seats) return false;
+        return seats == row.seats;
 
-        return true;
     }
 
     @Override
     public int hashCode() {
         int result = rowIndex;
         result = 31 * result + hallId;
-        result = 31 * result + cinemaId;
         result = 31 * result + seats;
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumns({@JoinColumn(name = "Hall_ID", referencedColumnName = "Hall_ID", nullable = false, insertable = false, updatable = false), @JoinColumn(name = "Cinema_ID", referencedColumnName = "Cinema_ID", nullable = false, insertable = false, updatable = false)})
-    public Hall getHall() {
-        return hall;
-    }
-
-    public void setHall(Hall hall) {
-        this.hall = hall;
     }
 
     @Override
     public String toString() {
         return "Row{" +
                 "Row Index=" + rowIndex +
-                ", HallControllerUser Id=" + hallId +
-                ", Cinema Id=" + cinemaId +
+                ", Hall Id=" + hallId +
                 ", Seats=" + seats +
-                ", HallControllerUser=" + hall +
                 '}';
     }
 }

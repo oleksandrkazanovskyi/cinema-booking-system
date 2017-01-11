@@ -30,10 +30,9 @@ public class RowController {
     @Autowired
     private RowValidator rowValidator;
 
-    @RequestMapping(value = "/admin/add/row", method = RequestMethod.GET, params = {"cinemaId", "hallId"})
-    public String getRowAdd(Model model, @RequestParam int cinemaId, @RequestParam int hallId) {
+    @RequestMapping(value = "/admin/add/row", method = RequestMethod.GET)
+    public String addRow(Model model, @RequestParam int hallId) {
         Row row = new Row();
-        row.setCinemaId(cinemaId);
         row.setHallId(hallId);
         model.addAttribute("row", row);
         return "/admin/add/row";
@@ -46,7 +45,7 @@ public class RowController {
             return "/admin/add/row";
         }
         rowService.addRow(row);
-        return "redirect:/admin/row?hallId=" + row.getHallId() + "&cinemaId=" + row.getCinemaId();
+        return "redirect:/admin/row?hallId=" + row.getHallId();
     }
 
     @RequestMapping(value = "/admin/delete/row", method = RequestMethod.GET, params = {"rowIndex", "hallId"})
@@ -55,22 +54,21 @@ public class RowController {
         return "redirect:/admin/row";
     }
 
-    @RequestMapping(value = "/admin/row", method = RequestMethod.GET, params = {"hallId", "cinemaId"})
-    public String viewRowByHall(@RequestParam("hallId") int hallId, @RequestParam("cinemaId") int cinemaId, Model model) {
-        model.addAttribute("rows", rowService.getRowByCinemaAndHall(cinemaService.getCinemaByID(cinemaId), hallService.getHallByID(hallId)));
-        model.addAttribute("cinemaId", cinemaId);
+    @RequestMapping(value = "/admin/row", method = RequestMethod.GET)
+    public String getRowByHall(@RequestParam("hallId") int hallId, Model model) {
+        model.addAttribute("rows", rowService.getRowByHall(hallId));
         model.addAttribute("hallId", hallId);
         return "/admin/row";
     }
 
-    @RequestMapping(value = "/admin/row", method = RequestMethod.GET)
-    public String viewRow(Model model) {
+   /* @RequestMapping(value = "/admin/row", method = RequestMethod.GET)
+    public String allRows(Model model) {
         model.addAttribute("rows", rowService.getAllRow());
         return "/admin/row";
-    }
+    }*/
 
     @RequestMapping(value = "/admin/edit/row", method = RequestMethod.GET, params = {"hallId", "rowIndex"})
-    public String getRowEdit(@RequestParam int hallId, @RequestParam int rowIndex, Model model) {
+    public String editRow(@RequestParam int hallId, @RequestParam int rowIndex, Model model) {
         model.addAttribute("row", rowService.getRowByHallIdAndRowIndex(hallId, rowIndex));
         return "/admin/edit/row";
     }

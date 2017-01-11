@@ -11,8 +11,6 @@ public interface CinemaService {
 
     List<Cinema> getAllCinema();
 
-    Cinema getCinemaByTittle(String tittle);
-
     Cinema addCinema(Cinema cinema);
 
     void deleteCinemaByID(Integer id);

@@ -31,13 +31,13 @@ public class DiscountController {
     }
 
     @RequestMapping(value = "/admin/add/discount", method = RequestMethod.GET)
-    public String getDiscountAdd(Model model) {
+    public String addDiscount(Model model) {
         model.addAttribute("discount", new Discount());
         return "/admin/add/discount";
     }
 
     @RequestMapping(value = "/admin/add/discount", method = RequestMethod.POST)
-    public String newCinema(@Valid Discount discount, BindingResult bindingResult, Model model) {
+    public String addDiscount(@Valid Discount discount, BindingResult bindingResult, Model model) {
         discountService.addDiscount(discount);
         return "redirect:/admin/discount";
     }
@@ -49,7 +49,7 @@ public class DiscountController {
     }
 
     @RequestMapping(value = "/admin/edit/discount", method = RequestMethod.GET, params = {"discountId"})
-    public String getDiscountEdit(@RequestParam int discountId, Model model) {
+    public String editDiscount(@RequestParam int discountId, Model model) {
         model.addAttribute("discount", discountService.getDiscountByID(discountId));
         return "/admin/edit/discount";
     }

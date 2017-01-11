@@ -42,13 +42,13 @@ public class GenreController {
     }
 
     @RequestMapping(value = "/admin/edit/genre", method = RequestMethod.GET, params = {"genreId"})
-    public String getGenreEdit(@RequestParam int genreId, Model model) {
+    public String editGenre(@RequestParam int genreId, Model model) {
         model.addAttribute("genre", genreService.getGenreByID(genreId));
         return "/admin/edit/genre";
     }
 
     @RequestMapping(value = "/admin/add/genre", method = RequestMethod.GET)
-    public String getGenreAdd(Model model) {
+    public String addGenre(Model model) {
         model.addAttribute("genre", new Genre());
         return "/admin/add/genre";
     }

@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@IdClass(HallPK.class)
 public class Hall implements Serializable {
     private Integer hallId;
     private Integer cinemaId;
@@ -14,7 +13,6 @@ public class Hall implements Serializable {
     private Cinema cinema;
     private Set<Row> rows;
     private Set<FilmSession> filmSessions;
-
 
     @Id
     @GeneratedValue
@@ -27,7 +25,6 @@ public class Hall implements Serializable {
         this.hallId = hallId;
     }
 
-    @Id
     @Column(name = "Cinema_ID")
     public Integer getCinemaId() {
         return cinemaId;

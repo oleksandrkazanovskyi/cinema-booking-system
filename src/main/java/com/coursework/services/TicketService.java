@@ -7,15 +7,13 @@ import java.util.List;
 
 public interface TicketService {
 
-    public Page<Ticket> getAllTicketsPage(Integer pageNumber);
+    Page<Ticket> getAllTicketsPage(Integer pageNumber);
 
-    public List<Ticket> getAllTicket();
+    List<Ticket> getTicketBySessionNotSold(Integer filmSessionId);
 
-    public List<Ticket> getTicketBySessionNotSold(Integer filmSessionId);
+    Ticket getTicketByID(Integer id);
 
-    public Ticket getTicketByID(Integer id);
+    void updateTicket(Ticket ticket);
 
-    public void updateTicket(Ticket ticket);
-
-    public void setPrice(Integer sessionId, Integer price);
+    void setPrice(Integer sessionId, Integer price);
 }

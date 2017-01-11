@@ -29,18 +29,18 @@
     <form class="form-vertical" data-toggle="validator" role="form" action="#"
           th:action="@{/tickets}"
           th:object="${order}" method="post">
-        <div class="form-group">
-            <div class="col-lg-12" th:each="row,iterStat : ${allTicket[1].filmSession.hall.rows}" th:with="count = 0">
-                <br/>
-                <!-- <h5 th:text="'Ряд ' + ${iterStat.count}"></h5>-->
-                <div class="checkbox-inline" th:each="i: ${#numbers.sequence(1, row.seats, 1)}">
-                    <input type="checkbox"
-                           th:field="*{tickets}"
-                           th:value="${allTicket[i]}"/>
+        <div class="col-lg-10 col-lg-offset-1">
+            <div class="form-group">
+                <div class="col-lg-12" th:each="row : ${allRow}">
+                    <div class="checkbox-inline" th:each="ticket: ${row.tickets}">
+                        <input type="checkbox"
+                               th:field="*{tickets}"
+                               th:value="${ticket}"/>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group col-lg-3">
             <button type="submit" class="btn btn-primary">Купить билеты</button>
         </div>
     </form>

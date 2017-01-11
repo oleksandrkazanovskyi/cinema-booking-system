@@ -39,7 +39,7 @@ public class FilmSessionServiceImpl implements FilmSessionService {
     }
 
     public List<FilmSession> getSessionByCinemaId(Integer id) {
-        return filmSessionRepository.findByCinemaId(id);
+        return null;//filmSessionRepository.findByCinemaId(id);
     }
 
     public FilmSession getSessionById(Integer id) {

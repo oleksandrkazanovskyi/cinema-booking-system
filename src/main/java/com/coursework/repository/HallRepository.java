@@ -9,8 +9,6 @@ public interface HallRepository extends JpaRepository<Hall, Integer> {
 
     List<Hall> findByCinemaId(Integer cinemaId);
 
-    List<Hall> findByHallTittle(String hallTittle);
-
     Hall findByHallId(Integer id);
 
     void deleteByHallId(Integer integer);
