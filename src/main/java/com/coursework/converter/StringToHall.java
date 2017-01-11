@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class StringToHall implements Converter<String, Hall> {
 
     @Autowired
@@ -14,6 +14,6 @@ public class StringToHall implements Converter<String, Hall> {
 
     @Override
     public Hall convert(String s) {
-        return hallService.getHallByTittle(s);
+        return hallService.getHallByTittle(s).get(0);
     }
 }

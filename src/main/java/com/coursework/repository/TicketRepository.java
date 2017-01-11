@@ -13,10 +13,7 @@ import java.util.List;
 
 public interface TicketRepository extends JpaRepository<Ticket, Integer> {
 
-    @Query("select a from Ticket a")
-    Page<Ticket> findAllTickets(Pageable pageable);
-
-    List<Ticket> findByFilmSessionIdAndIsSoldOrderByRowNumber(int sessionID, int isSold);
+    List<Ticket> findByFilmSessionIdOrderByRowNumberAscSeatAsc(int sessionID);
 
     void deleteTicketByFilmSessionId(int sessionID);
 

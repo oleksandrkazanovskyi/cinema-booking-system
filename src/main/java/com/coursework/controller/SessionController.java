@@ -1,21 +1,19 @@
 package com.coursework.controller;
 
-import com.coursework.model.Film;
 import com.coursework.model.FilmSession;
 import com.coursework.services.*;
+import com.coursework.services.impl.CinemaServiceImpl;
+import com.coursework.services.impl.FilmServiceImpl;
 import com.coursework.validator.SessionValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.sql.Date;
-import java.sql.Timestamp;
 
 @Controller
 public class SessionController {
@@ -27,10 +25,10 @@ public class SessionController {
     private HallService hallService;
 
     @Autowired
-    private FilmService filmService;
+    private FilmServiceImpl filmService;
 
     @Autowired
-    private CinemaService cinemaService;
+    private CinemaServiceImpl cinemaService;
 
     @Autowired
     private TicketService ticketService;

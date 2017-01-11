@@ -1,17 +1,14 @@
 package com.coursework.services;
 
-import com.coursework.model.Cinema;
 import com.coursework.model.Hall;
 import com.coursework.repository.HallRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class HallService {
-
 
     private HallRepository hallRepository;
 
@@ -21,16 +18,13 @@ public class HallService {
     }
 
     private boolean existHall(Hall hall) {
-        return hallRepository.exists(hall.getHallId());
+        return hallRepository.findByHallId(hall.getHallId()) != null;
     }
 
     public List<Hall> getAllHall() {
         return hallRepository.findAll();
     }
 
-    public Hall getHallByTittleAndCinema(String hallHittle, Cinema cinema) {
-        return hallRepository.findByHallTittleAndCinemaId(hallHittle, cinema.getCinemaId());
-    }
 
     public Hall getHallByID(int id) {
         return hallRepository.findByHallId(id);
@@ -40,14 +34,8 @@ public class HallService {
         return hallRepository.findByCinemaId(id);
     }
 
-    public Hall getHallByTittle(String tittle) {
+    public List<Hall> getHallByTittle(String tittle) {
         return hallRepository.findByHallTittle(tittle);
-    }
-
-    public void deleteHall(Hall hall) {
-        if (existHall(hall)) {
-            hallRepository.delete(hall);
-        }
     }
 
     public void deleteHallByID(int id) {
@@ -56,13 +44,8 @@ public class HallService {
         }
     }
 
-    public void updateHall(Hall hall) {
-        hallRepository.save(hall);
-    }
-
     public void addHall(Hall hall) {
         hallRepository.saveAndFlush(hall);
     }
-
 
 }

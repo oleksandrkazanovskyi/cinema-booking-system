@@ -1,7 +1,7 @@
 package com.coursework.controller;
 
 import com.coursework.model.User;
-import com.coursework.services.DiscountService;
+import com.coursework.services.impl.DiscountServiceImpl;
 import com.coursework.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,7 +22,7 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private DiscountService discountService;
+    private DiscountServiceImpl discountService;
 
     @RequestMapping(value = "/admin/user", method = RequestMethod.GET)
     public String allUser(Model model) {

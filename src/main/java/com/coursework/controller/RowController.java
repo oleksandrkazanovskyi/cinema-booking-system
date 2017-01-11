@@ -1,7 +1,7 @@
 package com.coursework.controller;
 
 import com.coursework.model.Row;
-import com.coursework.services.CinemaService;
+import com.coursework.services.impl.CinemaServiceImpl;
 import com.coursework.services.HallService;
 import com.coursework.services.RowService;
 import com.coursework.validator.RowValidator;
@@ -22,7 +22,7 @@ public class RowController {
     private RowService rowService;
 
     @Autowired
-    private CinemaService cinemaService;
+    private CinemaServiceImpl cinemaService;
 
     @Autowired
     private HallService hallService;

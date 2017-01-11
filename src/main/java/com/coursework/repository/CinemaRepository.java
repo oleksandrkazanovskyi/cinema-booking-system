@@ -7,5 +7,4 @@ public interface CinemaRepository extends JpaRepository<Cinema, Integer> {
 
     Cinema findByCinemaTittle(String tittle);
 
-    void deleteByCinemaTittle(String tittle);
 }

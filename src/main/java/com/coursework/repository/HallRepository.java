@@ -6,13 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface HallRepository extends JpaRepository<Hall, Integer> {
-    List<Hall> findByCinemaId(int cinemaId);
 
-    Hall findByHallTittleAndCinemaId(String hallTittle, int cinemaId);
+    List<Hall> findByCinemaId(Integer cinemaId);
 
-    Hall findByHallTittle(String hallTittle);
+    List<Hall> findByHallTittle(String hallTittle);
 
-    Hall findByHallId(int id);
+    Hall findByHallId(Integer id);
 
     void deleteByHallId(Integer integer);
 }

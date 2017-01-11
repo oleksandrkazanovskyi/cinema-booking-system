@@ -1,7 +1,7 @@
 package com.coursework.controller;
 
 import com.coursework.model.Hall;
-import com.coursework.services.CinemaService;
+import com.coursework.services.impl.CinemaServiceImpl;
 import com.coursework.services.HallService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ import javax.validation.Valid;
 public class HallController {
 
     @Autowired
-    private CinemaService cinemaService;
+    private CinemaServiceImpl cinemaService;
 
     @Autowired
     private HallService hallService;

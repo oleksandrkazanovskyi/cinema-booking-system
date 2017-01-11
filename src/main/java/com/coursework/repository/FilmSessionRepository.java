@@ -25,10 +25,6 @@ public interface FilmSessionRepository extends JpaRepository<FilmSession, Intege
 
     FilmSession findByHallIdAndDate(int hallId, Timestamp date);
 
-    void deleteByHallId(int hallId);
-
-    void deleteByFilmId(int filmId);
-
     @Modifying
     @Query("delete from FilmSession s where s.filmSessionId = ?1")
     @Transactional

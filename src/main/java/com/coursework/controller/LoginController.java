@@ -1,7 +1,7 @@
 package com.coursework.controller;
 
 import com.coursework.model.User;
-import com.coursework.services.FilmService;
+import com.coursework.services.impl.FilmServiceImpl;
 import com.coursework.services.SecurityService;
 import com.coursework.services.UserService;
 import com.coursework.validator.UserValidator;
@@ -25,7 +25,7 @@ public class LoginController {
     private UserValidator userValidator;
 
     @Autowired
-    private FilmService filmService;
+    private FilmServiceImpl filmService;
 
     @RequestMapping(value = "/admin/", method = RequestMethod.GET)
     public String index(Model model) {
@@ -34,7 +34,7 @@ public class LoginController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String indexUser(Model model) {
-        model.addAttribute("films", filmService.getLastThree());
+        model.addAttribute("films", filmService.getLast());
         return "/index";
     }
 

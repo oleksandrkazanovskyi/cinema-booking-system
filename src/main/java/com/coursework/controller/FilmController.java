@@ -1,8 +1,8 @@
 package com.coursework.controller;
 
 import com.coursework.model.Film;
-import com.coursework.services.ActorService;
-import com.coursework.services.FilmService;
+import com.coursework.services.impl.ActorServiceImpl;
+import com.coursework.services.impl.FilmServiceImpl;
 import com.coursework.services.GenreService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +25,10 @@ public class FilmController {
 
 
     @Autowired
-    private FilmService filmService;
+    private FilmServiceImpl filmService;
 
     @Autowired
-    private ActorService actorService;
+    private ActorServiceImpl actorService;
 
     @Autowired
     private GenreService genreService;

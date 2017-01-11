@@ -18,9 +18,6 @@ public interface FilmRepository extends JpaRepository<Film, Integer> {
 
     void deleteByFilmTittle(String tittle);
 
-    //List<Film> findByFilmTittleContaining(String filmTittle);
-
-
     Page<Film> findByFilmTittleContaining(String tittle, Pageable pageable);
 
     @Query("select f from Film f where f.filmId in (select s.filmId from FilmSession s where s.date > ?1)")

@@ -1,8 +1,8 @@
 package com.coursework.controller;
 
 import com.coursework.model.Actor;
-import com.coursework.services.ActorService;
-import com.coursework.services.FilmService;
+import com.coursework.services.impl.ActorServiceImpl;
+import com.coursework.services.impl.FilmServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -18,10 +18,10 @@ import javax.validation.Valid;
 public class ActorController {
 
     @Autowired
-    private ActorService actorService;
+    private ActorServiceImpl actorService;
 
     @Autowired
-    private FilmService filmService;
+    private FilmServiceImpl filmService;
 
     @RequestMapping(value = "/admin/actor", method = RequestMethod.GET)
     public String allActor(Model model) {
