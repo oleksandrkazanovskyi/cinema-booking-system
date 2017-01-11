@@ -1,8 +1,8 @@
 package com.coursework.controller;
 
 import com.coursework.model.Hall;
-import com.coursework.services.impl.CinemaServiceImpl;
-import com.coursework.services.impl.HallServiceImpl;
+import com.coursework.services.CinemaService;
+import com.coursework.services.HallService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +17,10 @@ import javax.validation.Valid;
 public class HallController {
 
     @Autowired
-    private CinemaServiceImpl cinemaService;
+    private CinemaService cinemaService;
 
     @Autowired
-    private HallServiceImpl hallService;
+    private HallService hallService;
 
     @RequestMapping(value = "/admin/add/hall", method = RequestMethod.GET)
     public String getHallAdd(Model model) {

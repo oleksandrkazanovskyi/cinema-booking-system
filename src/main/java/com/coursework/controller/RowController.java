@@ -1,9 +1,9 @@
 package com.coursework.controller;
 
 import com.coursework.model.Row;
-import com.coursework.services.impl.CinemaServiceImpl;
-import com.coursework.services.impl.HallServiceImpl;
-import com.coursework.services.impl.RowServiceImpl;
+import com.coursework.services.CinemaService;
+import com.coursework.services.HallService;
+import com.coursework.services.RowService;
 import com.coursework.validator.RowValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,13 +19,13 @@ import javax.validation.Valid;
 public class RowController {
 
     @Autowired
-    private RowServiceImpl rowService;
+    private RowService rowService;
 
     @Autowired
-    private CinemaServiceImpl cinemaService;
+    private CinemaService cinemaService;
 
     @Autowired
-    private HallServiceImpl hallService;
+    private HallService hallService;
 
     @Autowired
     private RowValidator rowValidator;

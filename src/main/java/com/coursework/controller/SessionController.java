@@ -2,11 +2,6 @@ package com.coursework.controller;
 
 import com.coursework.model.FilmSession;
 import com.coursework.services.*;
-import com.coursework.services.impl.CinemaServiceImpl;
-import com.coursework.services.impl.FilmServiceImpl;
-import com.coursework.services.impl.FilmSessionService;
-import com.coursework.services.impl.HallServiceImpl;
-import com.coursework.services.impl.TicketService;
 import com.coursework.validator.SessionValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,13 +20,13 @@ public class SessionController {
     private FilmSessionService filmSessionService;
 
     @Autowired
-    private HallServiceImpl hallService;
+    private HallService hallService;
 
     @Autowired
-    private FilmServiceImpl filmService;
+    private FilmService filmService;
 
     @Autowired
-    private CinemaServiceImpl cinemaService;
+    private CinemaService cinemaService;
 
     @Autowired
     private TicketService ticketService;

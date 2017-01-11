@@ -1,7 +1,7 @@
 package com.coursework.controller;
 
 import com.coursework.model.Actor;
-import com.coursework.services.impl.ActorServiceImpl;
+import com.coursework.services.ActorService;
 import com.coursework.services.impl.FilmServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,7 +18,7 @@ import javax.validation.Valid;
 public class ActorController {
 
     @Autowired
-    private ActorServiceImpl actorService;
+    private ActorService actorService;
 
     @Autowired
     private FilmServiceImpl filmService;

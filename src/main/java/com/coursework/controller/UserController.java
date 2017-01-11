@@ -1,8 +1,8 @@
 package com.coursework.controller;
 
 import com.coursework.model.User;
-import com.coursework.services.impl.DiscountServiceImpl;
-import com.coursework.services.impl.UserService;
+import com.coursework.services.DiscountService;
+import com.coursework.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,7 +22,7 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private DiscountServiceImpl discountService;
+    private DiscountService discountService;
 
     @RequestMapping(value = "/admin/user", method = RequestMethod.GET)
     public String allUser(Model model) {
@@ -32,7 +32,7 @@ public class UserController {
 
     @RequestMapping(value = "/admin/edit/user", method = RequestMethod.GET, params = {"userId"})
     public String getUserEdit(@RequestParam int userId, Model model) {
-        model.addAttribute("user", userService.findById(userId));
+        model.addAttribute("user", userService.findUserById(userId));
         return "/admin/edit/user";
     }
 

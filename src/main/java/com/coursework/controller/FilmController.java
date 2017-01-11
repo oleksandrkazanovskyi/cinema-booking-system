@@ -1,9 +1,9 @@
 package com.coursework.controller;
 
 import com.coursework.model.Film;
-import com.coursework.services.impl.ActorServiceImpl;
-import com.coursework.services.impl.FilmServiceImpl;
-import com.coursework.services.impl.GenreServiceImpl;
+import com.coursework.services.ActorService;
+import com.coursework.services.FilmService;
+import com.coursework.services.GenreService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,13 +25,13 @@ public class FilmController {
 
 
     @Autowired
-    private FilmServiceImpl filmService;
+    private FilmService filmService;
 
     @Autowired
-    private ActorServiceImpl actorService;
+    private ActorService actorService;
 
     @Autowired
-    private GenreServiceImpl genreService;
+    private GenreService genreService;
 
     @RequestMapping(value = "/admin/film", method = RequestMethod.GET)
     public String allFilms(Model model) {

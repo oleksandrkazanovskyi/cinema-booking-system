@@ -1,7 +1,7 @@
 package com.coursework.controller;
 
 import com.coursework.model.Discount;
-import com.coursework.services.impl.DiscountServiceImpl;
+import com.coursework.services.DiscountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +16,7 @@ import javax.validation.Valid;
 public class DiscountController {
 
     @Autowired
-    private DiscountServiceImpl discountService;
+    private DiscountService discountService;
 
     @RequestMapping(value = "/admin/discount", method = RequestMethod.GET)
     public String allDiscount(Model model) {

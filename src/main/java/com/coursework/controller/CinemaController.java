@@ -1,7 +1,7 @@
 package com.coursework.controller;
 
 import com.coursework.model.Cinema;
-import com.coursework.services.impl.CinemaServiceImpl;
+import com.coursework.services.CinemaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ import javax.validation.Valid;
 public class CinemaController {
 
     @Autowired
-    private CinemaServiceImpl cinemaService;
+    private CinemaService cinemaService;
 
     @RequestMapping(value = "/admin/cinema", method = RequestMethod.GET)
     public String allCinema(Model model) {

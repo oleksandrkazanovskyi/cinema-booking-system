@@ -1,8 +1,8 @@
 package com.coursework.controller;
 
 import com.coursework.model.Genre;
+import com.coursework.services.GenreService;
 import com.coursework.services.impl.FilmServiceImpl;
-import com.coursework.services.impl.GenreServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +18,7 @@ import javax.validation.Valid;
 public class GenreController {
 
     @Autowired
-    private GenreServiceImpl genreService;
+    private GenreService genreService;
 
     @Autowired
     private FilmServiceImpl filmService;
