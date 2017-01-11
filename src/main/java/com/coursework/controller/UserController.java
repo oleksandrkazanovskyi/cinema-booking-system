@@ -2,7 +2,7 @@ package com.coursework.controller;
 
 import com.coursework.model.User;
 import com.coursework.services.impl.DiscountServiceImpl;
-import com.coursework.services.UserService;
+import com.coursework.services.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -62,7 +62,7 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "error";
         }
-        userService.addUser(user);
+        userService.save(user);
         return "redirect:/admin/user";
     }
 

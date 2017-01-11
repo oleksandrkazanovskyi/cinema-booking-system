@@ -1,7 +1,8 @@
-package com.coursework.services;
+package com.coursework.services.impl;
 
 import com.coursework.model.FilmSession;
 import com.coursework.repository.FilmSessionRepository;
+import com.coursework.services.FilmSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,25 +11,16 @@ import java.util.List;
 
 @Service
 
-public class SessionService {
+public class FilmSessionServiceImpl implements FilmSessionService {
 
     @Autowired
     private FilmSessionRepository filmSessionRepository;
-
-    public boolean existSession(int filmSessionId) {
-        return filmSessionRepository.exists(filmSessionId);
-    }
-
 
     public FilmSession addSession(FilmSession filmSession) {
         return filmSessionRepository.saveAndFlush(filmSession);
     }
 
-    public void deleteSession(FilmSession filmSession) {
-        filmSessionRepository.delete(filmSession);
-    }
-
-    public void deleteSessionById(int id) {
+    public void deleteSessionById(Integer id) {
         if (getSessionById(id) != null) {
             filmSessionRepository.deleteByFilmSessionId(id);
         }
@@ -38,31 +30,24 @@ public class SessionService {
         return filmSessionRepository.findAll();
     }
 
-    public List<FilmSession> getSessionByDate(Timestamp date) {
-        return filmSessionRepository.findByDate(date);
-    }
-
-    public List<FilmSession> getSessionByFilmId(int filmId) {
+    public List<FilmSession> getSessionByFilmId(Integer filmId) {
         return filmSessionRepository.findByFilmId(filmId);
     }
 
-    public List<FilmSession> getSessionByHallId(int hallId) {
+    public List<FilmSession> getSessionByHallId(Integer hallId) {
         return filmSessionRepository.findByHallId(hallId);
     }
 
-    public List<FilmSession> getSessionByCinemaId(int id) {
+    public List<FilmSession> getSessionByCinemaId(Integer id) {
         return filmSessionRepository.findByCinemaId(id);
     }
 
-    public FilmSession getSessionById(int id) {
+    public FilmSession getSessionById(Integer id) {
         return filmSessionRepository.findByFilmSessionId(id);
     }
 
-    public FilmSession getSessionByHallDate(int hallId, Timestamp date) {
+    public FilmSession getSessionByHallDate(Integer hallId, Timestamp date) {
         return filmSessionRepository.findByHallIdAndDate(hallId, date);
     }
 
-    public FilmSession updateSession(FilmSession filmSession) {
-        return filmSessionRepository.saveAndFlush(filmSession);
-    }
 }

@@ -3,7 +3,7 @@ package com.coursework.controller;
 import com.coursework.model.Row;
 import com.coursework.services.impl.CinemaServiceImpl;
 import com.coursework.services.impl.HallServiceImpl;
-import com.coursework.services.RowService;
+import com.coursework.services.impl.RowServiceImpl;
 import com.coursework.validator.RowValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ import javax.validation.Valid;
 public class RowController {
 
     @Autowired
-    private RowService rowService;
+    private RowServiceImpl rowService;
 
     @Autowired
     private CinemaServiceImpl cinemaService;

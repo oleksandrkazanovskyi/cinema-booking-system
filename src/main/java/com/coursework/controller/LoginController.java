@@ -3,7 +3,7 @@ package com.coursework.controller;
 import com.coursework.model.User;
 import com.coursework.services.impl.FilmServiceImpl;
 import com.coursework.services.SecurityService;
-import com.coursework.services.UserService;
+import com.coursework.services.impl.UserService;
 import com.coursework.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

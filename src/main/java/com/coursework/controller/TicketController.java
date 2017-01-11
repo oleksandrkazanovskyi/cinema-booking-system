@@ -1,14 +1,12 @@
 package com.coursework.controller;
 
-import com.coursework.model.Actor;
 import com.coursework.model.Order;
 import com.coursework.model.Ticket;
 import com.coursework.model.User;
-import com.coursework.services.TicketService;
-import com.coursework.services.UserService;
+import com.coursework.services.impl.TicketService;
+import com.coursework.services.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -18,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
-import java.util.ArrayList;
 
 @Controller
 public class TicketController {

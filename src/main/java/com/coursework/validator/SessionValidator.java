@@ -1,7 +1,7 @@
 package com.coursework.validator;
 
 import com.coursework.model.FilmSession;
-import com.coursework.services.SessionService;
+import com.coursework.services.impl.FilmSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -11,7 +11,7 @@ import org.springframework.validation.Validator;
 public class SessionValidator implements Validator {
 
     @Autowired
-    private SessionService sessionService;
+    private FilmSessionService filmSessionService;
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -22,7 +22,7 @@ public class SessionValidator implements Validator {
     public void validate(Object o, Errors errors) {
         FilmSession filmSession = (FilmSession) o;
 
-        if (sessionService.getSessionByHallDate(filmSession.getHallId(), filmSession.getDate()) != null) {
+        if (filmSessionService.getSessionByHallDate(filmSession.getHallId(), filmSession.getDate()) != null) {
             errors.rejectValue("Date", "Duplicate");
         }
     }

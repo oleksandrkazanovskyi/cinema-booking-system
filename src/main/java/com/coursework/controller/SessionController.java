@@ -4,7 +4,9 @@ import com.coursework.model.FilmSession;
 import com.coursework.services.*;
 import com.coursework.services.impl.CinemaServiceImpl;
 import com.coursework.services.impl.FilmServiceImpl;
+import com.coursework.services.impl.FilmSessionService;
 import com.coursework.services.impl.HallServiceImpl;
+import com.coursework.services.impl.TicketService;
 import com.coursework.validator.SessionValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +22,7 @@ import javax.validation.Valid;
 public class SessionController {
 
     @Autowired
-    private SessionService sessionService;
+    private FilmSessionService filmSessionService;
 
     @Autowired
     private HallServiceImpl hallService;
@@ -59,7 +61,7 @@ public class SessionController {
             model.addAttribute("price", price);
             return "/admin/add/session";
         }
-        filmSession = sessionService.addSession(filmSession);
+        filmSession = filmSessionService.addSession(filmSession);
         ticketService.setPrice(filmSession.getFilmSessionId(), price);
         return "redirect:/admin/session?cinemaId=" + filmSession.getCinemaId();
     }
@@ -67,28 +69,28 @@ public class SessionController {
 
     @RequestMapping(value = "/admin/delete/session", method = RequestMethod.GET)
     public String deleteSession(@RequestParam int filmSessionId, Model model) {
-        sessionService.deleteSessionById(filmSessionId);
+        filmSessionService.deleteSessionById(filmSessionId);
         return "redirect:/admin/session";
     }
 
 
     @RequestMapping(value = "/admin/session", method = RequestMethod.GET, params = {"cinemaId"})
     public String getAllSessionByCinemaID(@RequestParam int cinemaId, Model model) {
-        model.addAttribute("sessions", sessionService.getSessionByCinemaId(cinemaId));
+        model.addAttribute("sessions", filmSessionService.getSessionByCinemaId(cinemaId));
         model.addAttribute("cinemaId", cinemaId);
         return "/admin/session";
     }
 
     @RequestMapping(value = "/admin/session", method = RequestMethod.GET)
     public String getAllSession(Model model) {
-        model.addAttribute("sessions", sessionService.getAllSession());
+        model.addAttribute("sessions", filmSessionService.getAllSession());
         return "/admin/session";
     }
 
 
     @RequestMapping(value = "/admin/edit/session", method = RequestMethod.GET)
     public String getSessionEdit(@RequestParam int sessionId, Model model) {
-        FilmSession filmSession = sessionService.getSessionById(sessionId);
+        FilmSession filmSession = filmSessionService.getSessionById(sessionId);
         model.addAttribute("myFilmSession", filmSession);
         model.addAttribute("allHalls", filmSession.getHall().getCinema().getHall());
         model.addAttribute("allFilms", filmService.getAllFilms());
@@ -97,37 +99,37 @@ public class SessionController {
 
     @RequestMapping(value = "/admin/edit/session", method = RequestMethod.POST)
     public String editSession(@Valid FilmSession myFilmSession, BindingResult bindingResult, Model model) {
-        sessionService.addSession(myFilmSession);
+        filmSessionService.addSession(myFilmSession);
         return "redirect:/admin/session";
     }
 
     @RequestMapping(value = "/session", method = RequestMethod.GET, params = {"cinemaId"})
     public String getAllSessionByCinemaIdUser(@RequestParam int cinemaId, Model model) {
-        model.addAttribute("sessions", sessionService.getSessionByCinemaId(cinemaId));
+        model.addAttribute("sessions", filmSessionService.getSessionByCinemaId(cinemaId));
         return "/session";
     }
 
     @RequestMapping(value = "/session", method = RequestMethod.GET, params = {"hallId"})
     public String getAllSessionByHallIdUser(@RequestParam int hallId, Model model) {
-        model.addAttribute("sessions", sessionService.getSessionByHallId(hallId));
+        model.addAttribute("sessions", filmSessionService.getSessionByHallId(hallId));
         return "/session";
     }
 
     @RequestMapping(value = "/session", method = RequestMethod.GET, params = {"filmId"})
     public String getAllSessionByFilmIdUser(@RequestParam int filmId, Model model) {
-        model.addAttribute("sessions", sessionService.getSessionByFilmId(filmId));
+        model.addAttribute("sessions", filmSessionService.getSessionByFilmId(filmId));
         return "/session";
     }
 
     @RequestMapping(value = "/session", method = RequestMethod.GET)
     public String getAllSessionUser(Model model) {
-        model.addAttribute("sessions", sessionService.getAllSession());
+        model.addAttribute("sessions", filmSessionService.getAllSession());
         return "/session";
     }
 
     @RequestMapping(value = "/details/session", method = RequestMethod.GET)
     public String getSessionDetails(@RequestParam int sessionId, Model model) {
-        model.addAttribute("filmSession", sessionService.getSessionById(sessionId));
+        model.addAttribute("filmSession", filmSessionService.getSessionById(sessionId));
         // model.addAttribute("price", ticketService.getTicketBySessionNotSold(sessionService.getSessionById(sessionId)).get(0).getPrice());
         return "/details/session";
     }

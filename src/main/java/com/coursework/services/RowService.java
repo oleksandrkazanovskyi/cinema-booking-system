@@ -3,51 +3,18 @@ package com.coursework.services;
 import com.coursework.model.Cinema;
 import com.coursework.model.Hall;
 import com.coursework.model.Row;
-import com.coursework.repository.RowRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class RowService {
+public interface RowService {
 
-    @Autowired
-    private RowRepository rowRepository;
+    Row addRow(Row row);
 
-    public boolean existRow(Row row) {
-        return rowRepository.equals(row);
-    }
+    void deleteRowByRowIndexAndHallId(int rowIndex, int hallId);
 
-    public void addRow(Row row) {
-        rowRepository.saveAndFlush(row);
-    }
+    Row getRowByHallIdAndRowIndex(int hallId, int rowIndex);
 
-    public void deleteRow(Row row) {
-        if (existRow(row))
-            rowRepository.delete(row);
-    }
+    List<Row> getRowByCinemaAndHall(Cinema cinema, Hall hall);
 
-    public void deleteRowByRowIndexAndHallId(int rowIndex, int hallId) {
-        if (rowRepository.findByRowIndexAndHallId(rowIndex, hallId) != null) {
-            rowRepository.deleteByRowIndexAndHallId(rowIndex, hallId);
-        }
-    }
-
-    public Row getRowByHallIdAndRowIndex(int hallId, int rowIndex) {
-        return rowRepository.findByRowIndexAndHallId(rowIndex, hallId);
-    }
-
-    public List<Row> getRowByCinemaAndHall(Cinema cinema, Hall hall) {
-        return rowRepository.findByCinemaIdAndHallId(cinema.getCinemaId(), hall.getHallId());
-    }
-
-    public List<Row> getAllRow() {
-        return rowRepository.findAll();
-    }
-
-    public void updateRow(Row row) {
-        rowRepository.save(row);
-    }
-
+    List<Row> getAllRow();
 }
