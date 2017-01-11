@@ -1,8 +1,8 @@
 package com.coursework.controller;
 
 import com.coursework.model.Genre;
+import com.coursework.services.FilmService;
 import com.coursework.services.GenreService;
-import com.coursework.services.impl.FilmServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +21,7 @@ public class GenreController {
     private GenreService genreService;
 
     @Autowired
-    private FilmServiceImpl filmService;
+    private FilmService filmService;
 
     @RequestMapping(value = "/admin/genre", method = RequestMethod.GET)
     public String allGenre(Model model) {
