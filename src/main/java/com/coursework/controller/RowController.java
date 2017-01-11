@@ -2,7 +2,7 @@ package com.coursework.controller;
 
 import com.coursework.model.Row;
 import com.coursework.services.impl.CinemaServiceImpl;
-import com.coursework.services.HallService;
+import com.coursework.services.impl.HallServiceImpl;
 import com.coursework.services.RowService;
 import com.coursework.validator.RowValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class RowController {
     private CinemaServiceImpl cinemaService;
 
     @Autowired
-    private HallService hallService;
+    private HallServiceImpl hallService;
 
     @Autowired
     private RowValidator rowValidator;

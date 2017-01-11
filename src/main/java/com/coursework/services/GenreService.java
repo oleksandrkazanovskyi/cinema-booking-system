@@ -1,48 +1,17 @@
 package com.coursework.services;
 
 import com.coursework.model.Genre;
-import com.coursework.repository.GenreRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class GenreService {
+public interface GenreService {
 
-    @Autowired
-    private GenreRepository genreRepository;
+    List<Genre> getAllGenre();
 
-    public boolean existGenre(Genre genre) {
-        return genreRepository.exists(genre.getGenreId());
-    }
+    Genre getGenreByID(Integer id);
 
-    public List<Genre> getAllGenre() {
-        return genreRepository.findAll();
-    }
+    void deleteGenreById(Integer id);
 
-    public Genre getGenreByID(int id) {
-        return genreRepository.findOne(id);
-    }
-
-    public Genre getGenreByTittle(String tittle) {
-        return genreRepository.findByGenreTittle(tittle);
-    }
-
-    public void updateGenre(Genre genre) {
-        genreRepository.save(genre);
-    }
-
-    public void deleteGenre(String tittle) {
-        genreRepository.deleteByGenreTittle(tittle);
-    }
-
-    public void deleteGenreById(int id) {
-        if (existGenre(getGenreByID(id)))
-            genreRepository.delete(id);
-    }
-
-    public void addGenre(Genre genre) {
-        genreRepository.saveAndFlush(genre);
-    }
+    void addGenre(Genre genre);
 }
+

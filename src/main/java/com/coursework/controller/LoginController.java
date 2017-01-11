@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class LoginController {
+
     @Autowired
     private UserService userService;
 
@@ -62,7 +63,7 @@ public class LoginController {
             return "registration";
         }
         userService.save(userForm);
-        securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
+        securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
 
         return "redirect:/";
     }

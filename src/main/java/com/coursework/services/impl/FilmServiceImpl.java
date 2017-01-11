@@ -1,23 +1,21 @@
 package com.coursework.services.impl;
 
-import com.coursework.model.Actor;
 import com.coursework.model.Film;
 import com.coursework.repository.FilmRepository;
+import com.coursework.services.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class FilmServiceImpl {
+public class FilmServiceImpl implements FilmService {
 
     private static final int PAGE_SIZE = 10;
 
@@ -28,11 +26,7 @@ public class FilmServiceImpl {
         return filmRepository.findAll();
     }
 
-    public Film getByTittle(String tittle) {
-        return filmRepository.findByFilmTittle(tittle);
-    }
-
-    public Film getFilmByID(int id) {
+    public Film getFilmByID(Integer id) {
         return filmRepository.findOne(id);
     }
 
@@ -55,20 +49,12 @@ public class FilmServiceImpl {
         return films;
     }
 
-    public void updateFilm(Film film) {
-        filmRepository.save(film);
-    }
-
-    public boolean existFilm(Film film) {
-        return filmRepository.exists(film.getFilmId());
-    }
-
     public Film addFilm(Film film) {
         return filmRepository.saveAndFlush(film);
     }
 
-    public void deleteFilmByID(int id) {
-        if (existFilm(getFilmByID(id))) {
+    public void deleteFilmByID(Integer id) {
+        if (getFilmByID(id) != null) {
             filmRepository.delete(id);
         }
     }

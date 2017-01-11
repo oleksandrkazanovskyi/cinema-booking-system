@@ -3,7 +3,7 @@ package com.coursework.controller;
 import com.coursework.model.Film;
 import com.coursework.services.impl.ActorServiceImpl;
 import com.coursework.services.impl.FilmServiceImpl;
-import com.coursework.services.GenreService;
+import com.coursework.services.impl.GenreServiceImpl;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,7 +31,7 @@ public class FilmController {
     private ActorServiceImpl actorService;
 
     @Autowired
-    private GenreService genreService;
+    private GenreServiceImpl genreService;
 
     @RequestMapping(value = "/admin/film", method = RequestMethod.GET)
     public String allFilms(Model model) {
@@ -107,7 +107,7 @@ public class FilmController {
         if (bindingResult.hasErrors()) {
             return "error";
         }
-        filmService.updateFilm(film);
+        filmService.addFilm(film);
         return "redirect:/admin/film";
     }
 
@@ -129,7 +129,7 @@ public class FilmController {
         if (bindingResult.hasErrors()) {
             return "error";
         }
-        filmService.updateFilm(film);
+        filmService.addFilm(film);
         return "redirect:/admin/film";
     }
 

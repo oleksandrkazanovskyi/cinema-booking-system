@@ -2,7 +2,7 @@ package com.coursework.controller;
 
 import com.coursework.model.Hall;
 import com.coursework.services.impl.CinemaServiceImpl;
-import com.coursework.services.HallService;
+import com.coursework.services.impl.HallServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +20,7 @@ public class HallController {
     private CinemaServiceImpl cinemaService;
 
     @Autowired
-    private HallService hallService;
+    private HallServiceImpl hallService;
 
     @RequestMapping(value = "/admin/add/hall", method = RequestMethod.GET)
     public String getHallAdd(Model model) {

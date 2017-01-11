@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>404</title>
+    <script src="/js/jquery.js" th:src="@{/js/jquery.js}"></script>
+    <script src="/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+    <script src="/js/validator.js" th:src="@{/js/validator.js}"></script>
+    <link rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="icon" href="/favicon.ico" th:href="@{/favicon.ico}"/>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</head>
+<body>
+<div class="container text-center">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+
+                <h2>
+                    404 Not Found</h2>
+                <div class="error-details">
+                    Извините, возникла ошибка! Запрашиваемая страница не найдена<!doctype html>
+                </div>
+                <div class="error-actions">
+                    <a href="/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                        Перейти на главную </a>
+                    <a class="btn btn-default btn-lg" onclick="goBack()"> <span
+                            class="glyphicon glyphicon-arrow-left"></span> Вернуться назад</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
