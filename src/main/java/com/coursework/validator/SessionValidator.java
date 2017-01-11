@@ -1,7 +1,7 @@
 package com.coursework.validator;
 
 import com.coursework.model.FilmSession;
-import com.coursework.services.impl.FilmSessionService;
+import com.coursework.services.FilmSessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

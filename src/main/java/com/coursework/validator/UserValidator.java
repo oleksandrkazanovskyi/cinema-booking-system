@@ -1,7 +1,7 @@
 package com.coursework.validator;
 
 import com.coursework.model.User;
-import com.coursework.services.impl.UserService;
+import com.coursework.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

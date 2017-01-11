@@ -1,7 +1,7 @@
 package com.coursework.validator;
 
 import com.coursework.model.Row;
-import com.coursework.services.impl.RowServiceImpl;
+import com.coursework.services.RowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -10,7 +10,7 @@ import org.springframework.validation.Validator;
 @Component
 public class RowValidator implements Validator {
     @Autowired
-    private RowServiceImpl rowService;
+    private RowService rowService;
 
     @Override
     public boolean supports(Class<?> aClass) {
