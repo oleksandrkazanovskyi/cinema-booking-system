@@ -8,8 +8,8 @@ import java.util.Set;
 public class Hall implements Serializable {
     private Integer hallId;
     private Integer cinemaId;
-    private String hallTittle;
-    private String desctiption;
+    private String title;
+    private String description;
     private Cinema cinema;
     private Set<Row> rows;
     private Set<FilmSession> filmSessions;
@@ -34,24 +34,23 @@ public class Hall implements Serializable {
         this.cinemaId = cinemaId;
     }
 
-    @Column(name = "Hall_Tittle")
-    public String getHallTittle() {
-        return hallTittle;
+    @Column(name = "title")
+    public String getTitle() {
+        return title;
     }
 
-    public void setHallTittle(String hallTittle) {
-        this.hallTittle = hallTittle;
+    public void setTitle(String hallTittle) {
+        this.title = hallTittle;
     }
 
-    @Column(name = "Desctiption")
-    public String getDesctiption() {
-        return desctiption;
+    @Column(name = "description")
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesctiption(String desctiption) {
-        this.desctiption = desctiption;
+    public void setDescription(String desctiption) {
+        this.description = desctiption;
     }
-
 
     @ManyToOne
     @JoinColumn(name = "Cinema_ID", referencedColumnName = "Cinema_ID", nullable = false, insertable = false, updatable = false)
@@ -83,6 +82,6 @@ public class Hall implements Serializable {
 
     @Override
     public String toString() {
-        return hallTittle;
+        return title;
     }
 }

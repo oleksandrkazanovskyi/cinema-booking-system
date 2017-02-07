@@ -42,13 +42,13 @@
         </div>
         <div class="col-lg-7">
             <h4><strong>Название: </strong></h4>
-            <h4 th:text="${film.filmTittle}"></h4>
+            <h4 th:text="${film.title}"></h4>
             <br/>
             <h4><strong>Описание: </strong></h4>
             <h4 th:text="${film.description}"></h4>
             <br/>
             <h4><strong>Длительность:</strong></h4>
-            <h4 th:text="${film.filmDuration} + ' минут'"></h4>
+            <h4 th:text="${film.duration} + ' минут'"></h4>
             <br/>
             <h4><strong>Год выпуска:</strong></h4>
             <h4 th:text="${film.year}"></h4>
@@ -63,8 +63,8 @@
             <h4 th:text="${film.startFrom}"></h4>
             <br/>
             <h4><strong>Жанры: </strong></h4>
-            <th:block th:each="genre : ${film.genreFilms}">
-                <h4 th:text="${genre.genreTittle}"></h4>
+            <th:block th:each="genre : ${film.genres}">
+                <h4 th:text="${genre.title}"></h4>
             </th:block>
             <h4><strong>Актеры: </strong></h4>
             <div class="list-group">

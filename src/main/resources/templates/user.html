@@ -46,60 +46,16 @@
             <h4 th:text="${user.email}"></h4>
             <br/>
             <form class="form-vertical" data-toggle="validator" role="form" action="#" th:action="@{/user/discount}"
-                  th:object="${user}"
+                  th:object="${discount}"
                   method="post">
 
-                <div class="form-group">
-                    <input class="form-control" type="hidden"
-                           th:field="*{userId}"/>
-                </div>
-
-                <div class="form-group">
-                    <input class="form-control" type="hidden"
-                           th:field="*{username}"/>
-                </div>
-
-                <div class="form-group">
-                    <input class="form-control" type="hidden"
-                           th:field="*{firstName}"/>
-                </div>
-
-                <div class="form-group">
-                    <input class="form-control" type="hidden"
-                           th:field="*{lastName}"/>
-                </div>
-
-                <div class="form-group">
-                    <input class="form-control" type="hidden"
-                           th:field="*{telephone}"/>
-                </div>
-
-                <div class="form-group">
-                    <input class="form-control" type="hidden"
-                           th:field="*{password}"/>
-                </div>
-
-                <div class="form-group">
-                    <input class="form-control" type="hidden"
-                           th:field="*{email}"/>
-                </div>
-
-                <div class="form-group">
-                    <input class="form-control" type="hidden"
-                           th:field="*{roles}"/>
-                </div>
-
-                <div class="form-group">
-                    <input class="form-control" type="hidden"
-                           th:field="*{tickets}"/>
-                </div>
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label" for="sel1">Скидка</label>
                     <select class="form-control" id="sel1" th:field="*{discountId}">
                         <option th:each="discount : ${allDiscounts}"
                                 th:value="${discount.discountId}"
-                                th:text="${discount.tittle}">
+                                th:text="${discount.title}">
                         </option>
                     </select>
                 </div>
@@ -124,9 +80,9 @@
                 </thead>
                 <tr th:each="ticket : ${user.tickets}">
                     <tbody>
-                    <td th:text="${ticket.filmSession.hall.cinema.cinemaTittle}"></td>
-                    <td th:text="${ticket.filmSession.hall.hallTittle}"></td>
-                    <td th:text="${ticket.filmSession.film.filmTittle}"></td>
+                    <td th:text="${ticket.filmSession.hall.cinema.title}"></td>
+                    <td th:text="${ticket.filmSession.hall.title}"></td>
+                    <td th:text="${ticket.filmSession.film.title}"></td>
                     <td th:text="${ticket.filmSession.date}"></td>
                     <td th:text="${ticket.rowNumber}"></td>
                     <td th:text="${ticket.seat}"></td>

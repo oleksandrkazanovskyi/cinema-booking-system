@@ -28,7 +28,7 @@ public class TicketServiceImpl implements TicketService {
         return ticketRepository.findAll();
     }
 
-    public List<Ticket> getTicketBySessionNotSold(Integer filmSessionId) {
+    public List<Ticket> getTicketBySession(Integer filmSessionId) {
         return ticketRepository.findByFilmSessionIdOrderByRowNumberAscSeatAsc(filmSessionId);
     }
 

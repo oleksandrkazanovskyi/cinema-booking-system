@@ -49,9 +49,9 @@
             <tr th:each="filmSession : ${sessions}"
                 th:onclick="'javascript:rowClicked(\'' + ${filmSession.filmSessionId} + '\');'" style="cursor: pointer">
 
-                <td th:text="${filmSession.hall.cinema.cinemaTittle}"></td>
-                <td th:text="${filmSession.hall.hallTittle}"></td>
-                <td th:text="${filmSession.film.filmTittle}"></td>
+                <td th:text="${filmSession.hall.cinema.title}"></td>
+                <td th:text="${filmSession.hall.title}"></td>
+                <td th:text="${filmSession.film.title}"></td>
                 <td th:text="${filmSession.date}"></td>
                 <td>
                     <a th:href="@{/tickets (filmSessionId = ${filmSession.filmSessionId})}">

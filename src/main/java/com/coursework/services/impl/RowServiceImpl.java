@@ -1,6 +1,7 @@
 package com.coursework.services.impl;
 
 import com.coursework.model.Row;
+import com.coursework.repository.FilmSessionRepository;
 import com.coursework.repository.RowRepository;
 import com.coursework.services.RowService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,9 @@ public class RowServiceImpl implements RowService {
 
     @Autowired
     private RowRepository rowRepository;
+
+    @Autowired
+    private FilmSessionRepository filmSessionRepository;
 
     public Row addRow(Row row) {
         return rowRepository.saveAndFlush(row);
@@ -36,8 +40,7 @@ public class RowServiceImpl implements RowService {
         return rowRepository.findAll();
     }
 
-    @Override
     public List<Row> getRowBySession(Integer filmSessionId) {
-        return rowRepository.getRowBySession(filmSessionId);
+        return rowRepository.findByHallFilmSessions(filmSessionRepository.findOne(filmSessionId));
     }
 }

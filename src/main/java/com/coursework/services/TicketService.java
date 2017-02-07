@@ -9,7 +9,7 @@ public interface TicketService {
 
     Page<Ticket> getAllTicketsPage(Integer pageNumber);
 
-    List<Ticket> getTicketBySessionNotSold(Integer filmSessionId);
+    List<Ticket> getTicketBySession(Integer filmSessionId);
 
     Ticket getTicketByID(Integer id);
 

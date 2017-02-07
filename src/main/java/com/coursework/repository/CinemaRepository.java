@@ -5,6 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CinemaRepository extends JpaRepository<Cinema, Integer> {
 
-    Cinema findByCinemaTittle(String tittle);
-
 }

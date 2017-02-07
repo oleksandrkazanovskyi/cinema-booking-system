@@ -67,8 +67,8 @@
             </thead>
             <tr th:each="film : ${allFilm.content}" th:onclick="'javascript:rowClicked(\'' + ${film.filmId} + '\');'"
                 style="cursor: pointer">
-                <td th:text="${film.filmTittle}"></td>
-                <td th:text="${film.filmDuration}"></td>
+                <td th:text="${film.title}"></td>
+                <td th:text="${film.duration}"></td>
                 <td th:text="${film.year}"></td>
                 <td th:text="${film.country}"></td>
                 <td th:text="${film.restriction} + '+'"></td>

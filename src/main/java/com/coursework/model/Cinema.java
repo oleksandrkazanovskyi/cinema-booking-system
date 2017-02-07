@@ -1,26 +1,18 @@
 package com.coursework.model;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Set;
 
 @Entity
 public class Cinema {
     private int cinemaId;
-    private String cinemaTittle;
-    private String cinemaAdress;
+    private String title;
+    private String address;
     private String telephoneNumber;
-    private String eMail;
+    private String email;
     private Set<Hall> hall;
 
     public Cinema() {
-    }
-
-    public Cinema(String cinemaTittle, String cinemaAdress, String telephoneNumber, String eMail) {
-        this.cinemaTittle = cinemaTittle;
-        this.cinemaAdress = cinemaAdress;
-        this.telephoneNumber = telephoneNumber;
-        this.eMail = eMail;
     }
 
     @Id
@@ -34,22 +26,22 @@ public class Cinema {
         this.cinemaId = cinemaId;
     }
 
-    @Column(name = "Cinema_Tittle")
-    public String getCinemaTittle() {
-        return cinemaTittle;
+    @Column(name = "title")
+    public String getTitle() {
+        return title;
     }
 
-    public void setCinemaTittle(String cinemaTittle) {
-        this.cinemaTittle = cinemaTittle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    @Column(name = "Cinema_Adress")
-    public String getCinemaAdress() {
-        return cinemaAdress;
+    @Column(name = "address")
+    public String getAddress() {
+        return address;
     }
 
-    public void setCinemaAdress(String cinemaAdress) {
-        this.cinemaAdress = cinemaAdress;
+    public void setAddress(String cinemaAdress) {
+        this.address = cinemaAdress;
     }
 
     @Column(name = "Telephone_Number")
@@ -62,12 +54,12 @@ public class Cinema {
     }
 
     @Column(name = "E_mail")
-    public String getEMail() {
-        return eMail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEMail(String eMail) {
-        this.eMail = eMail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 
@@ -82,6 +74,6 @@ public class Cinema {
 
     @Override
     public String toString() {
-        return cinemaTittle;
+        return title;
     }
 }

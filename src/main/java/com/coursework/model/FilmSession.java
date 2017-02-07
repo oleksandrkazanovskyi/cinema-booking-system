@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.util.Collection;
 
 @Entity
-@Table(name = "film_session", schema = "courseworkdb", catalog = "")
+@Table(name = "film_session")
 public class FilmSession {
     private Integer filmSessionId;
     private Integer hallId;

@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface TicketRepository extends JpaRepository<Ticket, Integer> {
 
-    List<Ticket> findByFilmSessionIdOrderByRowNumberAscSeatAsc(int sessionID);
+    List<Ticket> findByFilmSessionIdOrderByRowNumberAscSeatAsc(int sessionId);
 
     @Modifying
     @Query("update Ticket t set t.price = ?2 where t.filmSessionId= ?1 ")

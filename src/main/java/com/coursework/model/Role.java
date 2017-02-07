@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Table(name = "role")
 public class Role implements Serializable {
     private int roleId;
     private String name;
@@ -38,5 +37,10 @@ public class Role implements Serializable {
 
     public void setUsers(Set<User> users) {
         this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        return Integer.toString(roleId);
     }
 }

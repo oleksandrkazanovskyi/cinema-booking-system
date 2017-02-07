@@ -8,13 +8,12 @@ import javax.persistence.Id;
 @Entity
 public class Discount {
     private int discountId;
-    private String description;
     private int percent;
-    private String tittle;
+    private String description;
+    private String title;
 
     public Discount() {
     }
-
 
     @Id
     @GeneratedValue
@@ -27,17 +26,6 @@ public class Discount {
         this.discountId = discountId;
     }
 
-
-    @Column(name = "Desctiption")
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String desctiption) {
-        this.description = desctiption;
-    }
-
-
     @Column(name = "Percent")
     public int getPercent() {
         return percent;
@@ -47,13 +35,22 @@ public class Discount {
         this.percent = percent;
     }
 
-    @Column(name = "tittle")
-    public String getTittle() {
-        return tittle;
+    @Column(name = "description")
+    public String getDescription() {
+        return description;
     }
 
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
+    public void setDescription(String desctiption) {
+        this.description = desctiption;
+    }
+
+    @Column(name = "title")
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String tittle) {
+        this.title = tittle;
     }
 
     @Override
@@ -65,7 +62,7 @@ public class Discount {
 
         if (discountId != discount.discountId) return false;
         if (percent != discount.percent) return false;
-        return description != null ? description.equals(discount.description) : discount.description == null && (tittle != null ? tittle.equals(discount.tittle) : discount.tittle == null);
+        return description != null ? description.equals(discount.description) : discount.description == null && (title != null ? title.equals(discount.title) : discount.title == null);
 
     }
 
@@ -74,17 +71,7 @@ public class Discount {
         int result = discountId;
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + percent;
-        result = 31 * result + (tittle != null ? tittle.hashCode() : 0);
+        result = 31 * result + (title != null ? title.hashCode() : 0);
         return result;
     }
-
-    @Override
-    public String toString() {
-        return "Discount{" +
-                "Description='" + description + '\'' +
-                ", Percent=" + percent +
-                ", Tittle='" + tittle + '\'' +
-                '}';
-    }
-
 }

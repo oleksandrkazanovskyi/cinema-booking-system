@@ -13,10 +13,6 @@ public class Actor {
     public Actor() {
     }
 
-    public Actor(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 
     @Id
     @GeneratedValue

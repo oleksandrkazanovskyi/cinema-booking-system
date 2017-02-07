@@ -44,7 +44,7 @@
             <th:block th:each="genre : ${genres}">
 
                 <tbody>
-                <td th:text="${genre.genreTittle}"></td>
+                <td th:text="${genre.title}"></td>
                 <td th:text="${genre.description}"></td>
                 <td>
                     <a th:href="@{/admin/edit/genre(genreId= ${genre.genreId})}">

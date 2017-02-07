@@ -22,7 +22,7 @@ public class FilmSessionServiceImpl implements FilmSessionService {
 
     public void deleteSessionById(Integer id) {
         if (getSessionById(id) != null) {
-            filmSessionRepository.deleteByFilmSessionId(id);
+            filmSessionRepository.delete(id);
         }
     }
 
@@ -43,7 +43,7 @@ public class FilmSessionServiceImpl implements FilmSessionService {
     }
 
     public FilmSession getSessionById(Integer id) {
-        return filmSessionRepository.findByFilmSessionId(id);
+        return filmSessionRepository.findOne(id);
     }
 
     public FilmSession getSessionByHallDate(Integer hallId, Timestamp date) {

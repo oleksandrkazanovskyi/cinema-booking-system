@@ -7,8 +7,8 @@ import java.util.Set;
 @Entity
 public class Film {
     private Integer filmId;
-    private String filmTittle;
-    private int filmDuration;
+    private String title;
+    private int duration;
     private double filmRating;
     private String description;
     private String year;
@@ -16,7 +16,7 @@ public class Film {
     private int restriction;
     private Date startFrom;
     private Set<Actor> actors;
-    private Set<Genre> genreFilms;
+    private Set<Genre> genres;
 
     public Film() {
     }
@@ -32,24 +32,22 @@ public class Film {
         this.filmId = filmId;
     }
 
-
-    @Column(name = "Film_Tittle")
-    public String getFilmTittle() {
-        return filmTittle;
+    @Column(name = "title")
+    public String getTitle() {
+        return title;
     }
 
-    public void setFilmTittle(String filmTittle) {
-        this.filmTittle = filmTittle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-
-    @Column(name = "Film_Duration")
-    public int getFilmDuration() {
-        return filmDuration;
+    @Column(name = "duration")
+    public int getDuration() {
+        return duration;
     }
 
-    public void setFilmDuration(int filmDuration) {
-        this.filmDuration = filmDuration;
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
     @Column(name = "Film_Rating")
@@ -61,13 +59,13 @@ public class Film {
         this.filmRating = filmRating;
     }
 
-    @Column(name = "Desctiption")
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String desctiption) {
-        this.description = desctiption;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getYear() {
@@ -105,7 +103,6 @@ public class Film {
         this.startFrom = startFrom;
     }
 
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "film_actor", joinColumns = @JoinColumn(name = "film_id", referencedColumnName = "film_id"), inverseJoinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "actor_id"))
     public Set<Actor> getActors() {
@@ -118,12 +115,12 @@ public class Film {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "genre_film", joinColumns = @JoinColumn(name = "film_id", referencedColumnName = "film_id"), inverseJoinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "genre_id"))
-    public Set<Genre> getGenreFilms() {
-        return genreFilms;
+    public Set<Genre> getGenres() {
+        return genres;
     }
 
-    public void setGenreFilms(Set<Genre> genreFilms) {
-        this.genreFilms = genreFilms;
+    public void setGenres(Set<Genre> genreFilms) {
+        this.genres = genreFilms;
     }
 
     @Override

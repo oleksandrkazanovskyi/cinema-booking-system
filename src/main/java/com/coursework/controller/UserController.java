@@ -1,5 +1,6 @@
 package com.coursework.controller;
 
+import com.coursework.model.Discount;
 import com.coursework.model.User;
 import com.coursework.services.DiscountService;
 import com.coursework.services.UserService;
@@ -33,6 +34,7 @@ public class UserController {
     @RequestMapping(value = "/admin/edit/user", method = RequestMethod.GET, params = {"userId"})
     public String getUserEdit(@RequestParam int userId, Model model) {
         model.addAttribute("user", userService.findUserById(userId));
+        model.addAttribute("roles", userService.getAllRoles());
         return "/admin/edit/user";
     }
 
@@ -55,14 +57,16 @@ public class UserController {
     public String getUserDetails(Model model) {
         model.addAttribute("user", userService.findByUsername(getPrincipal()));
         model.addAttribute("allDiscounts", discountService.getAllDiscount());
-        model.addAttribute("discountId", null);
+        model.addAttribute("discount", new Discount());
         return "/user";
     }
 
     @RequestMapping(value = "/user/discount", method = RequestMethod.POST)
-    public String addUserDiscount(@Valid User user, Model model, BindingResult bindingResult) {
+    public String addUserDiscount(@Valid Discount discount, Model model, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "/user?error";
+        User user = userService.findByUsername(getPrincipal());
+        user.setDiscountId(discount.getDiscountId());
         userService.updateUser(user);
         return "redirect:/user";
     }

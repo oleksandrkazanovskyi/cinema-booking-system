@@ -22,17 +22,17 @@ public class HallServiceImpl implements HallService {
         return hallRepository.findAll();
     }
 
-    public Hall getHallByID(Integer id) {
-        return hallRepository.findByHallId(id);
+    public Hall getHallByID(Integer hallId) {
+        return hallRepository.findOne(hallId);
     }
 
-    public List<Hall> getHallByCinemaId(Integer id) {
-        return hallRepository.findByCinemaId(id);
+    public List<Hall> getHallByCinemaId(Integer cinemaId) {
+        return hallRepository.findByCinemaId(cinemaId);
     }
 
     public void deleteHallByID(Integer id) {
         if (getHallByID(id) != null) {
-            hallRepository.deleteByHallId(id);
+            hallRepository.delete(id);
         }
     }
 

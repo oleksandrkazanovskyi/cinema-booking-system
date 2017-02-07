@@ -20,13 +20,13 @@ public class SessionController {
     private FilmSessionService filmSessionService;
 
     @Autowired
-    private HallService hallService;
-
-    @Autowired
     private FilmService filmService;
 
     @Autowired
     private CinemaService cinemaService;
+
+    @Autowired
+    private HallService hallService;
 
     @Autowired
     private TicketService ticketService;
@@ -49,14 +49,14 @@ public class SessionController {
     public String addSession(@Valid FilmSession filmSession, @RequestParam("price") int price, BindingResult bindingResult, Model model) {
         sessionValidator.validate(filmSession, bindingResult);
         if (bindingResult.hasErrors()) {
-            model.addAttribute("allHalls", cinemaService.getCinemaByID(filmSession.getHall().getCinemaId()));
+            model.addAttribute("allHalls", hallService.getHallByCinemaId(hallService.getHallByID(filmSession.getHallId()).getCinemaId()));
             model.addAttribute("allFilms", filmService.getAllFilms());
             model.addAttribute("price", price);
             return "/admin/add/session";
         }
         filmSession = filmSessionService.addSession(filmSession);
         ticketService.setPrice(filmSession.getFilmSessionId(), price);
-        return "redirect:/admin/session?cinemaId=" + filmSession.getHall().getCinemaId();
+        return "redirect:/admin/session/";
     }
 
     @RequestMapping(value = "/admin/edit/session", method = RequestMethod.GET)
@@ -115,7 +115,6 @@ public class SessionController {
     @RequestMapping(value = "/details/session", method = RequestMethod.GET)
     public String getSession(@RequestParam int sessionId, Model model) {
         model.addAttribute("filmSession", filmSessionService.getSessionById(sessionId));
-        // model.addAttribute("price", ticketService.getTicketBySessionNotSold(sessionService.getSessionById(sessionId)).get(0).getPrice());
         return "/details/session";
     }
 }

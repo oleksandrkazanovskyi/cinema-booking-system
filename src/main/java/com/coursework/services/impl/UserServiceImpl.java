@@ -1,5 +1,7 @@
 package com.coursework.services.impl;
 
+import com.coursework.model.Order;
+import com.coursework.model.Role;
 import com.coursework.model.Ticket;
 import com.coursework.model.User;
 import com.coursework.repository.RoleRepository;
@@ -36,6 +38,16 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(userName);
     }
 
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public User findByTelephone(String telephone) {
+        return userRepository.findByTelephone(telephone);
+    }
+
     public User findUserById(Integer id) {
         return userRepository.findOne(id);
     }
@@ -47,19 +59,33 @@ public class UserServiceImpl implements UserService {
     }
 
     public void updateUser(User user) {
+        userRepository.saveAndFlush(user);
+    }
+
+    public void updateUser(User user, Order order) {
+        if (user.getDiscount() != null) {
+            for (Ticket t : order.getTickets()) {
+                t.setPrice(t.getPrice() - ((t.getPrice() / 100) * user.getDiscount().getPercent()));
+            }
+        }
+        user.getTickets().addAll(order.getTickets());
         if (user.getTickets() != null) {
             for (Ticket t : user.getTickets()) {
-                //t.setIsSold(1);
                 t.setUserId(user.getUserId());
             }
         }
         userRepository.saveAndFlush(user);
     }
 
-    public void save(User user) {
+    public void addUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setRoles(new HashSet<>((roleRepository.findByName("ROLE_USER"))));
         userRepository.save(user);
+    }
+
+    @Override
+    public List<Role> getAllRoles() {
+        return roleRepository.findAll();
     }
 }
 

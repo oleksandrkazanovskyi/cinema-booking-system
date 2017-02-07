@@ -43,9 +43,9 @@
             </thead>
             <th:block th:each="filmSession : ${sessions}">
                 <tbody>
-                <td th:text="${filmSession.hall.cinema.cinemaTittle}"></td>
-                <td th:text="${filmSession.hall.hallTittle}"></td>
-                <td th:text="${filmSession.film.filmTittle}"></td>
+                <td th:text="${filmSession.hall.cinema.title}"></td>
+                <td th:text="${filmSession.hall.title}"></td>
+                <td th:text="${filmSession.film.title}"></td>
                 <td th:text="${filmSession.date}"></td>
                 <td>
                     <a th:href="@{/admin/edit/session(sessionId = ${filmSession.filmSessionId})}">

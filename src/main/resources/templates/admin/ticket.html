@@ -47,9 +47,9 @@
             </thead>
             <th:block th:each="ticket : ${allTickets.content}">
                 <tbody>
-                <td th:text="${ticket.filmSession.hall.cinema.cinemaTittle}"></td>
-                <td th:text="${ticket.filmSession.hall.hallTittle}"></td>
-                <td th:text="${ticket.filmSession.film.filmTittle}"></td>
+                <td th:text="${ticket.filmSession.hall.cinema.title}"></td>
+                <td th:text="${ticket.filmSession.hall.title}"></td>
+                <td th:text="${ticket.filmSession.film.title}"></td>
                 <td th:text="${ticket.filmSession.date}"></td>
                 <div th:switch="${ticket.isSold}">
                     <td th:case="0">Нет</td>

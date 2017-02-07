@@ -2,7 +2,6 @@ package com.coursework.controller;
 
 import com.coursework.model.Actor;
 import com.coursework.services.ActorService;
-import com.coursework.services.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -20,8 +19,6 @@ public class ActorController {
     @Autowired
     private ActorService actorService;
 
-    @Autowired
-    private FilmService filmService;
 
     @RequestMapping(value = "/admin/actor", method = RequestMethod.GET)
     public String allActor(Model model) {

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 
 @Controller
 public class TicketController {
@@ -56,6 +57,7 @@ public class TicketController {
     @RequestMapping(value = "/tickets", method = RequestMethod.GET)
     public String allTicketBySession(@RequestParam int filmSessionId, Model model) {
         model.addAttribute("order", new Order());
+        model.addAttribute("tickets", new ArrayList<Integer>());
         model.addAttribute("allRow", rowService.getRowBySession(filmSessionId));
         return "/tickets";
     }
@@ -63,13 +65,7 @@ public class TicketController {
     @RequestMapping(value = "/tickets", method = RequestMethod.POST)
     public String addTicketToUser(@Valid Order order, Model model, BindingResult bindingResult) {
         User user = userService.findByUsername(getPrincipal());
-        if (user.getDiscount() != null) {
-            for (Ticket t : order.getTickets()) {
-                t.setPrice(t.getPrice() - ((t.getPrice() / 100) * user.getDiscount().getPercent()));
-            }
-        }
-        user.getTickets().addAll(order.getTickets());
-        userService.updateUser(user);
+        userService.updateUser(user, order);
         return "redirect:/";
     }
 

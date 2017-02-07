@@ -35,12 +35,12 @@
     </div>
     <div class="col-sm-4">
         <label>Кинотеатр: </label>
-        <h5 th:text="${filmSession.hall.cinema.cinemaTittle}"></h5>
+        <h5 th:text="${filmSession.hall.cinema.title}"></h5>
         <label>Кинозал: </label>
-        <h5 th:text="${filmSession.hall.hallTittle}"></h5>
+        <h5 th:text="${filmSession.hall.title}"></h5>
         <label>Фильм: </label>
         <a th:href="@{/details/film (filmId = ${filmSession.film.filmId})}"><h5
-                th:text="${filmSession.film.filmTittle}"></h5></a>
+                th:text="${filmSession.film.title}"></h5></a>
         <label>Возрастное ограничение: </label>
         <h5 th:text="${filmSession.film.restriction} + '+'"></h5>
         <label>Время: </label>

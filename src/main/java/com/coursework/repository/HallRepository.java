@@ -9,7 +9,7 @@ public interface HallRepository extends JpaRepository<Hall, Integer> {
 
     List<Hall> findByCinemaId(Integer cinemaId);
 
-    Hall findByHallId(Integer id);
+   /* Hall findByHallId(Integer id);
 
-    void deleteByHallId(Integer integer);
+    void deleteByHallId(Integer integer);*/
 }

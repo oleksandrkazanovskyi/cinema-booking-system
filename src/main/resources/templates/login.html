@@ -15,7 +15,7 @@
 <div class="login-page">
     <div class="form">
         <form class="login-form" th:action="@{/login}" method="post" data-toggle="validator">
-            <div class="help-block" th:if="${error}!=null" style="color: #ac2925">Ошибка при авторизации</div>
+            <div class="help-block" th:if="${error}!= null" style="color: #ac2925">Неправильный логин/пароль</div>
             <input name="username" type="text" placeholder="Логин" required="required"/>
             <input name="password" type="password" placeholder="Пароль" required="required"/>
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>

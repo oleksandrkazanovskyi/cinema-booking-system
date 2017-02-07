@@ -48,7 +48,7 @@
             <label class="col-sm-2 control-label">Название</label>
             <div class="col-sm-10">
                 <input class="form-control" type="text" placeholder="Введите название кинотеатра"
-                       required="required" th:field="*{cinemaTittle}"/>
+                       required="required" th:field="*{title}"/>
                 <div class="help-block with-errors"></div>
             </div>
         </div>
@@ -57,7 +57,7 @@
             <label class="col-sm-2 control-label">Адрес</label>
             <div class="col-sm-10">
                 <input class="form-control" type="text" placeholder="Введите адрес кинотеатра"
-                       required="required" th:field="*{cinemaAdress}"/>
+                       required="required" th:field="*{address}"/>
                 <div class="help-block with-errors"></div>
             </div>
         </div>
@@ -78,7 +78,7 @@
             <div class="col-sm-10">
                 <input class="form-control" type="email"
                        placeholder="Введите электронную почту кинотеатра" required="required"
-                       th:field="*{eMail}"/>
+                       th:field="*{email}"/>
                 <div class="help-block with-errors"></div>
             </div>
         </div>
@@ -102,7 +102,7 @@
             <label class="col-sm-2 control-label">Название</label>
             <div class="col-sm-10">
                 <input class="form-control" type="text" placeholder="Введите название скидки"
-                       required="required" th:field="*{tittle}"/>
+                       required="required" th:field="*{title}"/>
                 <div class="help-block with-errors"></div>
             </div>
         </div>
@@ -144,7 +144,7 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">Название</label>
                 <input class="form-control" type="text" placeholder="Введите название фильма"
-                       required="required" th:field="*{filmTittle}"/>
+                       required="required" th:field="*{title}"/>
                 <div class="help-block with-errors"></div>
             </div>
 
@@ -167,7 +167,7 @@
                 <label class="col-sm-2 control-label">Длительность</label>
                 <input class="form-control" type="number"
                        placeholder="Введите длительность фильма в минутах" required="required" min="20" max="300"
-                       th:field="*{filmDuration}"/>
+                       th:field="*{duration}"/>
                 <div class="help-block with-errors"></div>
             </div>
 
@@ -217,7 +217,7 @@
             <label class="col-sm-2 control-label">Название</label>
             <div class="col-sm-10">
                 <input class="form-control" type="text" placeholder="Введите название жанра"
-                       required="required" th:field="*{genreTittle}"/>
+                       required="required" th:field="*{title}"/>
                 <div class="help-block with-errors"></div>
             </div>
         </div>
@@ -246,7 +246,7 @@
             <select th:field="*{cinemaId}" class="form-control" id="sel1">
                 <option th:each="cinema : ${cinemas}"
                         th:value="${cinema.cinemaId}"
-                        th:text="${ cinema.cinemaTittle}">
+                        th:text="${ cinema.title}">
                 </option>
             </select>
         </div>
@@ -254,7 +254,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">Название</label>
             <input class="form-control" type="text" placeholder="Введите название кинозала"
-                   required="required" th:field="*{hallTittle}"/>
+                   required="required" th:field="*{title}"/>
             <div class="help-block with-errors"></div>
         </div>
 
@@ -309,6 +309,77 @@
     </form>
 </div>
 
+<div th:fragment="user">
+    <form class="form-vertical" data-toggle="validator" role="form" action="#" th:action="@{/admin/edit/user}"
+          th:object="${user}" method="post">
+
+        <div class="form-group">
+            <input class="form-control" type="hidden"
+                   th:field="*{userId}"/>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="hidden"
+                   th:field="*{discountId}"/>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="hidden"
+                   th:field="*{password}"/>
+        </div>
+
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Логин</label>
+                <input class="form-control" type="text" placeholder="Введите логин"
+                       required="required" th:field="*{username}"/>
+                <div class="help-block with-errors"></div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Имя</label>
+                <input class="form-control" type="text" placeholder="Введите имя"
+                       required="required" th:field="*{firstName}"/>
+                <div class="help-block with-errors"></div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Фамилия</label>
+                <input class="form-control" type="text" placeholder="Введите фамилию"
+                       required="required" th:field="*{lastName}"/>
+                <div class="help-block with-errors"></div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Телефон</label>
+                <input class="form-control" type="text" placeholder="Введите номер телефона"
+                       required="required" th:field="*{telephone}" maxlength="13" minlength="13"/>
+                <div class="help-block with-errors"></div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Email</label>
+                <input class="form-control" type="text" placeholder="Введите email"
+                       required="required" th:field="*{email}"/>
+                <div class="help-block with-errors"></div>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox-inline" th:each="role : ${roles}">
+                    <input type="checkbox"
+                           th:field="*{roles}"
+                           th:value="${role}" th:text="${role.name}"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Внести изменения</button>
+        </div>
+
+    </form>
+</div>
+
 <div th:fragment="session">
     <form class="form-vertical" data-toggle="validator" role="form" action="#" th:action="@{/admin/add/session}"
           th:object="${filmSession}" method="post" enctype="multipart/form-data" id="form">
@@ -317,12 +388,6 @@
             <input class="form-control" type="hidden"
                    th:field="*{filmSessionId}"/>
         </div>
-
-
-        <!-- <div class="form-group">
-             <input class="form-control" type="hidden"
-                    th:field="*{cinemaId}"/>
-         </div>-->
 
         <div class="help-block" th:if="${#fields.hasErrors('Date')}" style="color: #ac2925">В это время уже проводится
             сеанс
@@ -333,7 +398,7 @@
             <select th:field="*{hallId}" class="form-control" id="sel2" required="required">
                 <option th:each="hall : ${allHalls}"
                         th:value="${hall.hallId}"
-                        th:text="${hall.hallTittle}"></option>
+                        th:text="${hall.title}"></option>
             </select>
         </div>
 
@@ -342,7 +407,7 @@
             <select th:field="*{filmId}" class="form-control" id="sel1" required="required">
                 <option th:each="film : ${allFilms}"
                         th:value="${film.filmId}"
-                        th:text="${film.filmTittle}"></option>
+                        th:text="${film.title}"></option>
             </select>
         </div>
 

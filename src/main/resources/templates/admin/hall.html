@@ -44,8 +44,8 @@
             </thead>
             <th:block th:each="hall : ${halls}">
                 <tbody>
-                <td th:text="${hall.cinema.cinemaTittle}"></td>
-                <td th:text="${hall.hallTittle}"></td>
+                <td th:text="${hall.cinema.title}"></td>
+                <td th:text="${hall.title}"></td>
                 <td th:text="${hall.desctiption}"></td>
                 <td>
                     <a th:href="@{/admin/row(hallId = ${hall.hallId}, cinemaId= ${hall.cinemaId})}">

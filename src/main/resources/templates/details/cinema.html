@@ -51,10 +51,10 @@
             <th:block th:each="cinema : ${cinemas}">
 
                 <tbody>
-                <td th:text="${cinema.cinemaTittle}"></td>
-                <td th:text="${cinema.cinemaAdress}"></td>
+                <td th:text="${cinema.title}"></td>
+                <td th:text="${cinema.address}"></td>
                 <td th:text="${cinema.telephoneNumber}"></td>
-                <td th:text="${cinema.eMail}"></td>
+                <td th:text="${cinema.email}"></td>
 
                 <td>
                     <a th:href="@{/hall(cinemaId = ${cinema.cinemaId})}">

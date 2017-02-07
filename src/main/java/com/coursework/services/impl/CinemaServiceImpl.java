@@ -21,16 +21,12 @@ public class CinemaServiceImpl implements CinemaService {
 
     public Page<Cinema> getAllCinemaPage(Integer pageNumber) {
         PageRequest request =
-                new PageRequest(pageNumber - 1, PAGE_SIZE, Sort.Direction.ASC, "cinemaTittle");
+                new PageRequest(pageNumber - 1, PAGE_SIZE, Sort.Direction.ASC, "title");
         return cinemaRepository.findAll(request);
     }
 
     public List<Cinema> getAllCinema() {
         return cinemaRepository.findAll();
-    }
-
-    public Cinema getCinemaByTittle(String tittle) {
-        return cinemaRepository.findByCinemaTittle(tittle);
     }
 
     private boolean existCinema(Cinema cinema) {

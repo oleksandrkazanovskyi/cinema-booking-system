@@ -1,22 +1,16 @@
 package com.coursework.model;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Set;
 
 @Entity
 public class Genre {
     private int genreId;
-    private String genreTittle;
+    private String title;
     private String description;
-    private Set<Film> genreFilms;
+    private Set<Film> films;
 
     public Genre() {
-    }
-
-    public Genre(String genreTittle, String description) {
-        this.genreTittle = genreTittle;
-        this.description = description;
     }
 
     @Id
@@ -30,13 +24,13 @@ public class Genre {
         this.genreId = genreId;
     }
 
-    @Column(name = "Genre_Tittle")
-    public String getGenreTittle() {
-        return genreTittle;
+    @Column(name = "title")
+    public String getTitle() {
+        return title;
     }
 
-    public void setGenreTittle(String genreTittle) {
-        this.genreTittle = genreTittle;
+    public void setTitle(String genreTittle) {
+        this.title = genreTittle;
     }
 
     @Column(name = "Description")
@@ -50,12 +44,12 @@ public class Genre {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "genre_film", joinColumns = @JoinColumn(name = "genre_id", referencedColumnName = "genre_id"), inverseJoinColumns = @JoinColumn(name = "film_id", referencedColumnName = "film_id"))
-    public Set<Film> getGenreFilms() {
-        return genreFilms;
+    public Set<Film> getFilms() {
+        return films;
     }
 
-    public void setGenreFilms(Set<Film> genreFilms) {
-        this.genreFilms = genreFilms;
+    public void setFilms(Set<Film> genreFilms) {
+        this.films = genreFilms;
     }
 
     @Override
