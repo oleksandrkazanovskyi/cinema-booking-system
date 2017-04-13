@@ -12,7 +12,6 @@ import java.util.List;
 public interface FilmRepository extends JpaRepository<Film, Integer> {
 
     Page<Film> findByTitleContaining(String title, Pageable pageable);
-
-    @Query("select f from Film f where f.filmId in (select s.filmId from FilmSession s where s.date > ?1)")
-    List<Film> filmFromToday(Timestamp date);
+    
+    List<Film> findByFilmSessionDateGreaterThan(Timestamp date);
 }
