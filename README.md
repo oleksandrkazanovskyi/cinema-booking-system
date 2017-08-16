@@ -7,3 +7,4 @@ This is web application for booking tickets to the cinema.
 * Spring Security
 * Thymeleaf
 * MySQL
+* Project Lombok
